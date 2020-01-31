@@ -11,7 +11,7 @@ Sesion::getInstance();
 //routing
 $map = array(
     'login' => array('controller' => 'Controller', 'action'=>'login'),
-    'inicio' => array('controller' =>'Controller', 'action' =>'inicio'),
+    'home' => array('controller' =>'Controller', 'action' =>'home'),
     'error' => array('controller' =>'Controller', 'action' =>'error')
 );
 // parsing route
@@ -20,7 +20,7 @@ if (isset($_GET['ctl'])) {
         if($_GET['ctl'] != 'login')
             $ruta = $_GET['ctl'];
         else
-            $ruta = 'inicio';
+            $ruta = 'home';
     } else {
         $ruta = 'error';
     }
@@ -32,12 +32,12 @@ $controlador = $map[$ruta];
 if (method_exists($controlador['controller'],$controlador['action'])) {
     call_user_func(array(new $controlador['controller'],
         $controlador['action']));
-} else {
+}else {
     header('Status: 404 Not Found');
-    echo '<html><body><h1>Error 404: El controlador <i>' .
+    echo '<html><body><h1>Error 404: The controller <i>' .
         $controlador['controller'] .
         '->' .
         $controlador['action'] .
-        '</i> no existe</h1></body></html>';
+        '</i> does not exist.</h1></body></html>';
 }
 ?>

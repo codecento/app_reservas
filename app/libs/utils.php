@@ -11,6 +11,11 @@ function validarDatos($n, $e, $p, $hc, $f, $g)
         is_numeric($g));
 }
 
+function cryptBlowfish($pass){
+    $salt = '$2a$07$hellothereimencriptedsalt$';
+    $pass = crypt($pass,$salt);
+    return $pass;
+}
 
 function recoge($var)
 {

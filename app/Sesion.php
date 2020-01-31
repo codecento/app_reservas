@@ -12,7 +12,7 @@ class Sesion
             session_start();
             self::$sesion = true;
         }
-        $_SESSION["nivel"] = 0;
+        $_SESSION["level"] = 0;
     }
 
     public static function getInstance()
@@ -24,10 +24,9 @@ class Sesion
         return self::$instance;
     }
 
-    public function inicializaVariables($usuario,$nivel)
+    public function inicializaVariables($user)
     {
-        $_SESSION["usuario"] = $usuario;
-        $_SESSION["nivel"] = $nivel;
+        $_SESSION["user"] = $user;
     }
 }
 

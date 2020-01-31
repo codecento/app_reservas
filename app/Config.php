@@ -3,9 +3,8 @@
 class Config
 {
 static public $mvc_bd_hostname = "localhost";
-static public $mvc_bd_nombre = "reservas_aulas";
-static public $mvc_bd_usuario = "root";
-static public $mvc_bd_clave = "";
-static public $mvc_vis_css = "style.css";
+static public $mvc_db_name = "reservas_aulas";
+static public $mvc_db_user = "root";
+static public $mvc_db_pass = "";
 }
 ?>
