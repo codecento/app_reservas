@@ -12,16 +12,10 @@ Sesion::getInstance();
 $map = array(
     'login' => array('controller' => 'Controller', 'action'=>'login'),
     'inicio' => array('controller' =>'Controller', 'action' =>'inicio'),
-    'listar' => array('controller' =>'Controller', 'action' =>'listar'),
-    'insertar' => array('controller' =>'Controller', 'action' =>'insertar'),
-    'buscar' => array('controller' =>'Controller', 'action' =>'buscarPorNombre'),
-    'buscarAlimentosPorEnergia' => array('controller' =>'Controller', 'action' =>'buscarPorEnergia'),
-    'buscarAlimentosCombinada' => array('controller' =>'Controller', 'action' =>'buscarCombinada'),
-    'ver' => array('controller' =>'Controller', 'action' =>'ver'),
     'error' => array('controller' =>'Controller', 'action' =>'error')
 );
 // parsing route
-if (isset($_GET['ctl']) && $_SESSION["nivel"] != 0) {
+if (isset($_GET['ctl'])) {
     if (isset($map[$_GET['ctl']])) {
         if($_GET['ctl'] != 'login')
             $ruta = $_GET['ctl'];
