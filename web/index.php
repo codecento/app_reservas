@@ -4,9 +4,9 @@
 require_once __DIR__ . '/../app/Config.php';
 require_once __DIR__ . '/../app/Model.php';
 require_once __DIR__ . '/../app/Controller.php';
-require_once __DIR__ . '/../app/Sesion.php';
+require_once __DIR__ . '/../app/Session.php';
 
-Sesion::getInstance();
+initalizeSession();
 
 //routing
 $map = array(
@@ -14,16 +14,22 @@ $map = array(
     'home' => array('controller' =>'Controller', 'action' =>'home'),
     'error' => array('controller' =>'Controller', 'action' =>'error')
 );
+
 // parsing route
-if (isset($_GET['ctl'])) {
-    if (isset($map[$_GET['ctl']])) {
-        if($_GET['ctl'] != 'login')
-            $ruta = $_GET['ctl'];
-        else
-            $ruta = 'home';
-    } else {
-        $ruta = 'error';
+if (isset($_SESSION["user"])) {
+    if (isset($_GET['ctl'])){
+        if (isset($map[$_GET['ctl']])) {
+            if($_GET['ctl'] != 'login')
+                $ruta = $_GET['ctl'];
+            else
+                $ruta = 'home';
+        } else {
+            $ruta = 'error';
+        }
+    }else{
+        $ruta = 'home';
     }
+    
 } else {
     $ruta = 'login';
 }

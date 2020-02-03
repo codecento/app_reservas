@@ -1,7 +1,5 @@
 <?php ob_start() ?>
 
-<div class="row">
-
 <h3> Ha habido un error </h3>
 
 

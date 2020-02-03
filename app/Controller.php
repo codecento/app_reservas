@@ -1,7 +1,7 @@
 <?php
 include ('libs/utils.php');
 include ('Validacion.php');
-include ('Sesion.php');
+include ('Session.php');
 
 class Controller
 {
@@ -37,17 +37,24 @@ class Controller
                     $enabled = $userData["enabled"];
                     $admin = $userData["admin"];
 
-                    if($enabled){
+                    //Configure the user session
+                    sessionConf($user);
+
+                    if($enabled == 1){
                         if(cryptBlowfish($password) == $passwordDB){
-                            Sesion::getInstance()->inicializaVariables($user);
                             header("location:index.php?ctl=home");
                         }else{
-                            require __DIR__ . '/templates/login.php?novalid='.$true;
+                            $notValid = true;
+                            require __DIR__ . '/templates/login.php';
                         }
                     }else{
-                        header("location:index.php?ctl=notenabled");
+                        $notEnabled = true;
+                        require __DIR__ . '/templates/login.php';
                     }
                         
+                }else{
+                    $notValid = true;
+                    require __DIR__ . '/templates/login.php';
                 }
             }else{
                 require __DIR__ . '/templates/login.php';

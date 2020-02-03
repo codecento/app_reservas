@@ -32,7 +32,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="index.php?ctl=login" method="post" role="form" style="display: block;">
+								<form id="login-form" action="index.php?ctl=login" method="post" role="form" style="display: block;" enctype="multipart/form-data">
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 									</div>
@@ -56,6 +56,17 @@
 												<div class="text-center">
 													<a href="" tabindex="5" class="forgot-password">Forgot Password?</a>
 												</div>
+												<div class="text-center">
+													<p style="color: red">
+													<?php
+														if(isset($notValid)){
+															echo "Usuario o contraseña incorrectos.";
+														}else if(isset($notEnabled)){
+															echo "Usuario no validado. Revisa tu correo electrónico o ponte en contacto con el administrador.";
+														}
+													?>
+													</p>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -72,6 +83,10 @@
 									</div>
 									<div class="form-group">
 										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+									</div>
+									<div class="form-group">
+										<h4>Upload profile image</h4>
+										<input type="file" name="image" id="image" tabindex="2">
 									</div>
 									<div class="form-group">
 										<div class="row">

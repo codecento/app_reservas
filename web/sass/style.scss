@@ -1,20 +1,8 @@
+@import "calendar";
+
 /* Variables that set web details colors */
-$color_1: #00415d;
-$color_2: #666;
-$color_3: #029f5b;
-$color_4: #fff;
-$color_5: #888;
-$background_color_1: #fff;
-$background_color_2: #59B2E0;
-$background_color_3: #53A3CD;
-$background_color_4: #1CB94E;
-$background_color_5: #1CA347;
-$border_color_1: #ccc;
-$border_color_2: #fff;
-$border_color_3: #59B2E6;
-$border_color_4: #53A3CD;
-$border_color_5: #1CB94A;
-$border_color_6: #1CA347;
+$color_1: #666;
+$color_2: #029f5b;
 
 /* Placeholder that defines how transitions will be in the website */
 %web-transitions{
@@ -24,21 +12,18 @@ $border_color_6: #1CA347;
 }
 
 /* NAVBAR START */
-#navbar {
-    height: 100px;
-}
-
 #navbarSupportedContent{
     li a{
         text-decoration: none;
-        color: $color_2;
+        color: $color_1;
         font-weight: bold;
-        font-size: 15px;
+        font-size: 17px;
         
     }
     
     li a.active {
-        color: $color_3;
+        color: $color_2;
+        font-size: 18px;
     }
 }
 

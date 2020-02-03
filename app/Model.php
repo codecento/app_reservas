@@ -16,7 +16,7 @@ class Model extends PDO
 
     /* Function that returns the query looking for a user */
     public function getUser($user){
-        $statement = $this->conexion->prepare('SELECT user FROM users WHERE user=?');
+        $statement = $this->conexion->prepare('SELECT * FROM users WHERE user=?');
         $statement->bindParam(1,$user);
         $statement->execute();
         return $statement->fetchAll()[0];
