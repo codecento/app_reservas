@@ -1,0 +1,138 @@
+/* Variables that set web details colors */
+$color_1: #00415d;
+$color_2: #666;
+$color_3: #029f5b;
+$color_4: #fff;
+$color_5: #888;
+$background_color_1: #fff;
+$background_color_2: #59B2E0;
+$background_color_3: #53A3CD;
+$background_color_4: #1CB94E;
+$background_color_5: #1CA347;
+$border_color_1: #ccc;
+$border_color_2: #fff;
+$border_color_3: #59B2E6;
+$border_color_4: #53A3CD;
+$border_color_5: #1CB94A;
+$border_color_6: #1CA347;
+
+/* Placeholder that sets same style to both register and login buttons */
+%button-style {
+	color: $color_4;
+	background-color: $background_color_4;
+	border-color: $border_color_5;
+}
+
+%input-hover-focus{
+	outline: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-color: $border_color_1;
+}
+
+%default-input-style{
+	height: 45px;
+	border: 1px solid #ddd;
+	font-size: 16px;
+	@extend %web-transitions;
+}
+
+/* Placeholder that defines how transitions will be in the website */
+%web-transitions{
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+
+/* Body style */
+body {
+	padding-top: 90px;
+}
+
+/* Login panel style */
+.panel-login {
+	border-color: $border_color_1;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	>.panel-heading {
+		color: $color_1;
+		background-color: $background_color_1;
+		border-color: $border_color_2;
+		text-align: center;
+		a {
+			text-decoration: none;
+			color: $color_2;
+			font-weight: bold;
+			font-size: 15px;
+			@extend %web-transitions;
+		}
+		a.active {
+			color: $color_3;
+			font-size: 18px;
+		}
+		hr {
+			margin-top: 10px;
+			margin-bottom: 0px;
+			clear: both;
+			border: 0;
+			height: 1px;
+			background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+			background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+			background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+			background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+		}
+	}
+	/* Every input styles on both forms are defined here with the same settings with the 'default-input-style' placeholder*/
+	input[type="text"] {
+		@extend %default-input-style;
+	}
+	input[type="email"] {
+		@extend %default-input-style;
+	}
+	input[type="password"] {
+		@extend %default-input-style;
+	}
+	input {
+		&:hover {
+			@extend %input-hover-focus;
+		}
+		&:focus {
+			@extend %input-hover-focus;
+		}
+	}
+}
+
+/* Style for both login and register buttons, where 'button-style' placeholder is extended */
+.btn-main-form {
+	background-color: $background_color_4;
+	outline: none;
+	color: $color_4;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: $border_color_5;
+	&:hover {
+		@extend %button-style;
+	}
+	&:focus {
+		@extend %button-style;
+	}
+}
+
+/* Style for the 'forgot-password' link */
+.forgot-password {
+	text-decoration: underline;
+	color: $color_5;
+	&:hover {
+		text-decoration: underline;
+		color: $color_2;
+	}
+	&:focus {
+		text-decoration: underline;
+		color: $color_2;
+	}
+}
