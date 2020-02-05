@@ -14,7 +14,15 @@
   -webkit-box-shadow: 3px 8px 16px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
-.events-container {
+#classroomName {
+  border-bottom: 1px solid white;
+}
+
+.hours-text {
+  font-size: 18px;
+}
+
+.hours-container {
   overflow-y: scroll;
   float: right;
   height: 100%;
@@ -26,12 +34,12 @@
   border-top-right-radius: 3px;
 }
 
-.events-container:after {
+.hours-container:after {
   clear: both;
 }
 
-.event-card {
-  padding: 20px 0;
+.range {
+  padding: 20px;
   width: 350px;
   margin: 20px auto;
   display: block;
@@ -327,6 +335,10 @@
 
 /* Variables that set web details colors */
 /* Placeholder that defines how transitions will be in the website */
+.page-title {
+  text-align: center;
+}
+
 /* NAVBAR START */
 #navbarSupportedContent li a {
   text-decoration: none;

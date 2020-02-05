@@ -1,5 +1,5 @@
 <?php ob_start(); ?>
-<h1>Calendar</h1>
+<h2 class="page-title">Reserve a classroom</h2>
 <div class="content">
   <div class="calendar-container">
     <div class="calendar">

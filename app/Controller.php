@@ -1,7 +1,5 @@
 <?php
 include ('libs/utils.php');
-include ('Validacion.php');
-include ('Session.php');
 
 class Controller
 {
@@ -20,7 +18,7 @@ class Controller
     {
         try{
             if(isset($_REQUEST["register-submit"])){
-                
+                $validacion = new Validacion();
             }else if(isset($_REQUEST["login-submit"])){
                 /* Sanitize input values and store them */
                 $user = Validacion::sanitiza("username");

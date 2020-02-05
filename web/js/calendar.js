@@ -1,3 +1,5 @@
+var hours = ["7:55 - 8:50","8:50 - 9:45","9:45 - 10:40","11:00 - 11:55", "11:55 - 12:50", "12:50 - 13:45", "14:05 - 15:00", "15:00 - 15:55", "15:55 - 16:50", "16:50 - 17:45","18:05 - 19:00", "19:00 - 19:55", "19:55 - 20:50","21:10 - 22:05"];
+
 // Setup the calendar with the current date
 $(document).ready(function(){
     var date = new Date();
@@ -104,7 +106,16 @@ function prev_year(event) {
 
 // Display all events of the selected date in card views
 function show_hours() {
-    
+    var hoursContainer = $(".hours-container");
+    hoursContainer.empty();
+    hoursContainer.show(250);
+    var classroomName = "Classroom Example";
+    hoursContainer.append($("<h4 id='classroomName' class='mt-4 text-white pb-3'>"+classroomName+"</h4>"));
+    for(var i=0; i<14; i++) {
+        var range = $("<div class='range' id='"+hours[i]+"'><p class='hours-text'>"+hours[i]+"</p></div>");
+        hoursContainer.append(range);
+    }
+
     
 
     /*
