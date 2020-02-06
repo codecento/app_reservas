@@ -1,5 +1,6 @@
 <?php
 include ('libs/utils.php');
+include ("Session.php");
 
 class Controller
 {
@@ -18,7 +19,31 @@ class Controller
     {
         try{
             if(isset($_REQUEST["register-submit"])){
+                $data = $_POST;
+
                 $validacion = new Validacion();
+
+                $regla = array(
+                    array('name' => 'username', 'regla' => 'noempty,user'),
+                    array('name' => 'email', 'regla' => 'no-empty,email'),
+                    array('name' => 'password', 'regla' => 'no-empty,password'),
+                    array('name' => 'confirm-password', 'regla' => 'no-empty,password')
+                );
+
+                $validation = $validacion->rules($regla,$data);
+                
+
+                if($validation === true){
+
+                }else{
+                    $m = new Model();
+                    $userData = $m->getUser($user);
+                     
+                    $Validacion::mensaje
+                    sessionConf();
+                    header()
+                }
+
             }else if(isset($_REQUEST["login-submit"])){
                 /* Sanitize input values and store them */
                 $user = Validacion::sanitiza("username");
@@ -58,7 +83,7 @@ class Controller
                 require __DIR__ . '/templates/login.php';
             }
         }catch(Exception $e){
-            echo $e->getMessage();
+            header("location:index.php?ctl=error");
         }
             
     }

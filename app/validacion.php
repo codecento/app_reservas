@@ -95,7 +95,7 @@ class Validacion
         }
         return $validator;
     }
-
+/*
 function campoImagen()
 {
     if ($_FILES[$nombre]['error'] != 0) {
@@ -146,7 +146,7 @@ function campoImagen()
                 $errores[] = "Error: No se puede mover el fichero a su destino";
         }
     }
-}
+}*/
 
     /**
      * Metodo de verificacion de que el dato no este vacio o NULL
@@ -179,8 +179,18 @@ function campoImagen()
         }
     }
 
+    protected function _password($campo, $valor)
+    {
+        if (! preg_match("/^[A-Za-z0-9]{8,}$/", $valor)){
+            $this->mensaje[$campo] = "el campo $campo debe de contener letras y numeros, y tener al menos 8 caracteres";
+            return false;
+        }
+        else
+            return true;
+    }
 
-    protected function _usuario($campo, $valor){
+
+    protected function _user($campo, $valor){
         if (! preg_match("/^[A-Za-z0-9]{7,15}$/", $valor)){
             $this->mensaje[$campo] = "el campo $campo debe de contener letras y numeros, y tener entre 7 y 15 caracteres";
             return false;
@@ -189,7 +199,7 @@ function campoImagen()
             return true;
     }
 
-    protected function _texto($campo, $valor){
+    protected function _text($campo, $valor){
         if (! preg_match("/^[A-Za-z]{7,15}$/", $valor)){
             $this->mensaje[$campo] = "el campo $campo debe de contener letras y tener entre 7 y 15 caracteres";
             return false;
