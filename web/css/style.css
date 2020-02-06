@@ -64,7 +64,7 @@
   text-align: right;
 }
 
-/* Style for calendar container */
+/* Style for calendar (years, months, dates) container */
 .calendar-container {
   float: left;
   position: relative;
@@ -150,13 +150,10 @@
   background: rgba(95, 25, 8, 0.938);
 }
 
-/*
-#add-button {
-    display: block;
-    position: absolute;
-    right:20px;
-    bottom: 20px;
-}*/
+.hidden {
+  display: none;
+}
+
 /* Style for dates */
 .days-table {
   border-collapse: separate;

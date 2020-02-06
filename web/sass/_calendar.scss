@@ -12,6 +12,7 @@ $border_color_1: #029f5b;
 $border_color_2: rgb(92, 30, 12);
 $border_color_3: rgb(202, 97, 10);
 
+//Calendar general style
 .content {
 	overflow: none;
 	max-width: 790px;
@@ -33,6 +34,7 @@ $border_color_3: rgb(202, 97, 10);
 	border-bottom: 1px solid white;
 }
 
+//Hours container and ranges style
 .hours-text{
 	font-size: 18px;
 }
@@ -72,7 +74,7 @@ $border_color_3: rgb(202, 97, 10);
 	text-align: right;
 }
 
-/* Style for calendar container */
+/* Style for calendar (years, months, dates) container */
 .calendar-container {
 	float: left;
 	position: relative;
@@ -153,13 +155,10 @@ $border_color_3: rgb(202, 97, 10);
 	border: none;
 	background: $color_2;
 }
-/*
-#add-button {
-    display: block;
-    position: absolute;
-    right:20px;
-    bottom: 20px;
-}*/
+
+.hidden{
+	display: none;
+}
 
 /* Style for dates */
 .days-table {

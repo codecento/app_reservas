@@ -41,5 +41,11 @@ class Model extends PDO
         $statement->bindParam(5,$enabled);
         $statement->execute();
     }
+
+    public function getReservations($classroom,$date,$range)
+    {
+        $statement = $this->conexion->query('SELECT * FROM reservations');
+        return $statement->fetchAll();
+    }
     
 }

@@ -13,7 +13,8 @@ $map = array(
     'login' => array('controller' => 'Controller', 'action'=>'login'),
     'home' => array('controller' =>'Controller', 'action' =>'home'),
     'error' => array('controller' =>'Controller', 'action' =>'error'),
-    'logout' => array('controller' => 'Controller', 'action' => 'logout')
+    'logout' => array('controller' => 'Controller', 'action' => 'logout'),
+    'getReservations' => array('controller' => 'Controller', 'action' => 'getReservations')
 );
 
 // parsing route

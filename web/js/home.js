@@ -1,7 +1,6 @@
 var hours = ["7:55 - 8:50","8:50 - 9:45","9:45 - 10:40","11:00 - 11:55", "11:55 - 12:50", "12:50 - 13:45", "14:05 - 15:00", "15:00 - 15:55", "15:55 - 16:50", "16:50 - 17:45","18:05 - 19:00", "19:00 - 19:55", "19:55 - 20:50","21:10 - 22:05"];
 
-// Setup the calendar with the current date
-$(document).ready(function(){
+$(function(){
     var date = new Date();
     var today = date.getDate();
     // Set click handlers for DOM elements
@@ -11,8 +10,23 @@ $(document).ready(function(){
     // Set current month as active
     $(".months-row").children().eq(date.getMonth()).addClass("active-month");
     init_calendar(date);
-    
+
+    //Navbar behavior
+    $("#navbarSupportedContent li a").on("click",function(){
+        $("#navbarSupportedContent li a").removeClass("active");
+        $(this).addClass("active");
+    });
+        
+    $(".reserve-button").click({date: date},reserve_click);
+
 });
+
+function reserve_click()
+{
+
+}
+
+
 
 // Initialize the calendar by appending the HTML dates
 function init_calendar(date) {
@@ -71,9 +85,12 @@ function days_in_month(month, year) {
 
 // Event handler for when a date is clicked
 function date_click(event) {
+    var date = event.data.date;
+    $(".hours-container").empty();
     $(".hours-container").show(250);
     $(".active-date").removeClass("active-date");
     $(this).addClass("active-date");
+    date.setDate(parseInt($(".active-date").html()));
     show_hours();
 };
 
@@ -106,17 +123,20 @@ function prev_year(event) {
     init_calendar(date);
 }
 
-// Display all events of the selected date in card views
+// Display all events of the selected date in card views, checking if there is a reservation
 function show_hours() {
+    var date = 
     var hoursContainer = $(".hours-container");
-    hoursContainer.empty();
-    hoursContainer.show(250);
     var classroomName = "Classroom Example";
     hoursContainer.append($("<h4 id='classroomName' class='mt-4 text-white pb-3'>"+classroomName+"</h4>"));
     for(var i=0; i<14; i++) {
-        var range = $("<div class='range' id='"+(i+1)+"'><p class='hours-text'>"+hours[i]+"</p><button class='button'>Reservar</button></div>");
+        var range = $("<div class='range' id='"+(i+1)+"'><p class='hours-text'>"+hours[i]+"</p><button class='button reserve-button'>Reserve</button><button class='button remove-button hidden'>Remove</button></div>");
         hoursContainer.append(range);
+        $.ajax({url: "index.php",type: "GET", data: {ctl: "checkReservations",}, success: function(respuesta){
+            
+        }});
     }
+    
 }
 
 const months = [ 

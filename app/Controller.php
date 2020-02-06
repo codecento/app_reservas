@@ -1,4 +1,7 @@
 <?php
+//TODO develop notenabled page
+//TODO change error page
+
 include ('libs/utils.php');
 include ("Session.php");
 include ("Validation.php");
@@ -106,6 +109,13 @@ class Controller
     {
         closeSession();
         require __DIR__ . "/templates/login.php";
+    }
+
+    public function getReservations()
+    {
+        $m = new Model();
+        $reservations = $m->getReservations();
+        echo json_encode($reservations);
     }
 }
 
