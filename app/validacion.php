@@ -10,12 +10,12 @@ class Validacion
 {
     protected $_atributos;
     protected $_error;
-    public $mensaje;
+    public $message;
 
     /**
      * Metodo para indicar la regla de validacion
      * El método retorna un valor verdadero si la validación es correcta, de lo contrario retorna el objeto
-     * actual, permitiendo acceder al atributo Validacion::$mensaje ya que es publico
+     * actual, permitiendo acceder al atributo Validacion::$message ya que es publico
      */
     public function rules($rule = array(), &$data,$sanitizar=false)
     {
@@ -43,19 +43,19 @@ class Validacion
                                 throw new BadMethodCallException("No se encontro el metodo actual $valores");
                             }
 
-                            $comprueba = $this->$validator($rules['name'], $valor);
+                            $check = $this->$validator($rules['name'], $valor);
 
-                            if(!$comprueba)
-                                $respuesta = $comprueba; //Si hay algún campo que no tenga un valor correcto, esta variable se le asignará false. De la otra forma, machacabas el valor constantemente 
+                            if(!$check)
+                                $result = $check; //Si hay algún campo que no tenga un valor correcto, esta variable se le asignará false. De la otra forma, machacabas el valor constantemente 
                         }
                         break;
                     }
                 }
             } else {
-                $this->mensaje[$rules['name']] = "el campo" . $rules["name"] . "no esta dentro de la regla de validación o en el formulario";
+                $this->message[$rules['name']] = "el campo" . $rules["name"] . "no esta dentro de la regla de validación o en el formulario";
             }
         }
-        if (!$respuesta) {
+        if (!$result) {
             return $this;
         } else {
             return true;
@@ -151,7 +151,7 @@ function campoImagen()
     /**
      * Metodo de verificacion de que el dato no este vacio o NULL
      * El metodo retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
-     * y llena el atributo validacion::$mensaje con un arreglo indicando el campo que mostrara el mensaje y el
+     * y llena el atributo validacion::$message con un arreglo indicando el campo que mostrara el mensaje y el
      * mensaje que visualizara el usuario
      */
     protected function _noEmpty($campo, $valor)
@@ -166,7 +166,7 @@ function campoImagen()
     /**
      * Metodo de verificacion de tipo numerico
      * El metodo retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
-     * y llena el atributo validacion::$mensaje con un arreglo indicando el campo que mostrara el mensaje y el
+     * y llena el atributo validacion::$message con un arreglo indicando el campo que mostrara el mensaje y el
      * mensaje que visualizara el usuario
      */
     protected function _numeric($campo, $valor)
@@ -211,7 +211,7 @@ function campoImagen()
     /**
      * Metodo de verificacion de tipo email
      * El metodo retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
-     * y llena el atributo validacion::$mensaje con un arreglo indicando el campo que mostrara el mensaje y el
+     * y llena el atributo validacion::$message con un arreglo indicando el campo que mostrara el mensaje y el
      * mensaje que visualizara el usuario
      */
     protected function _email($campo, $valor)

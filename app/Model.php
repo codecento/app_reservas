@@ -29,5 +29,17 @@ class Model extends PDO
         $statement->execute();
         return $statement->fetchAll()[0]["password"];        
     }
+
+    public function addUser($user,$email,$password){
+        $admin = false;
+        $enabled = false;
+        $statement = $this->conexion->prepare('INSERT INTO users(user, email, password, admin, enabled) VALUES (?,?,?,?,?)');
+        $statement->bindParam(1,$user);
+        $statement->bindParam(2,$email);
+        $statement->bindParam(3,$password);
+        $statement->bindParam(4,$admin);
+        $statement->bindParam(5,$enabled);
+        $statement->execute();
+    }
     
 }

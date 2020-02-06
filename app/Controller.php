@@ -10,7 +10,18 @@ class Controller
         require __DIR__ . '/templates/error.php';
     }
 
-    public function home(){
+    public function home(){ 
+        if($enabled == 1){
+            if(cryptBlowfish($password) == $passwordDB){
+                header("location:index.php?ctl=home");
+            }else{
+                $notValid = true;
+                require __DIR__ . '/templates/login.php';
+            }
+        }else{
+            $notEnabled = true;
+            require __DIR__ . '/templates/login.php';
+        }  
         require __DIR__ . '/templates/home.php';
     }
 
@@ -32,16 +43,21 @@ class Controller
 
                 $validation = $validacion->rules($regla,$data);
                 
-
+                //Check if the form is valid
                 if($validation === true){
-
+                    //Check if 'confirmed password' is equals to the 'password'
+                    if($data["password"] == $data["confirm-password"]){
+                        $m = new Model();
+                        $userData = $m->addUser($data["user"],$data["email"],$data["password"]);
+                        sessionConf($data["user"]);
+                        header("location:index.php?ctl=home");
+                    }else{
+                        $message = $validation->message;
+                        require __DIR__ . '/templates/login.php';
+                    }
+                    
                 }else{
-                    $m = new Model();
-                    $userData = $m->getUser($user);
-                     
-                    $Validacion::mensaje
-                    sessionConf();
-                    header()
+                    
                 }
 
             }else if(isset($_REQUEST["login-submit"])){
@@ -62,19 +78,7 @@ class Controller
 
                     //Configure the user session
                     sessionConf($user);
-
-                    if($enabled == 1){
-                        if(cryptBlowfish($password) == $passwordDB){
-                            header("location:index.php?ctl=home");
-                        }else{
-                            $notValid = true;
-                            require __DIR__ . '/templates/login.php';
-                        }
-                    }else{
-                        $notEnabled = true;
-                        require __DIR__ . '/templates/login.php';
-                    }
-                        
+                    
                 }else{
                     $notValid = true;
                     require __DIR__ . '/templates/login.php';
