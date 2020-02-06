@@ -60,9 +60,9 @@
 													<p style="color: red">
 													<?php
 														if(isset($notValid)){
-															echo "Usuario o contraseña incorrectos.";
-														}else if(isset($notEnabled)){
-															echo "Usuario no validado. Revisa tu correo electrónico o ponte en contacto con el administrador.";
+															echo "User or password incorrect.";
+														}else if(isset($userExists)){
+															echo "Register error: the user name has already been taken!";
 														}
 													?>
 													</p>

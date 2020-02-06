@@ -36,4 +36,23 @@ $color_2: #029f5b;
     max-height: 75px;
 }
 
+/* Style for both login and register buttons, where 'button-style' placeholder is extended */
+.btn-submit {
+	background-color: $background_color_4;
+	outline: none;
+	color: $color_4;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: $border_color_5;
+	&:hover {
+		@extend %button-style;
+	}
+	&:focus {
+		@extend %button-style;
+	}
+}
+
 /* NAVBAR END */

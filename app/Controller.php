@@ -1,6 +1,7 @@
 <?php
 include ('libs/utils.php');
 include ("Session.php");
+include ("Validation.php");
 
 class Controller
 {
@@ -10,19 +11,15 @@ class Controller
         require __DIR__ . '/templates/error.php';
     }
 
-    public function home(){ 
-        if($enabled == 1){
-            if(cryptBlowfish($password) == $passwordDB){
-                header("location:index.php?ctl=home");
-            }else{
-                $notValid = true;
-                require __DIR__ . '/templates/login.php';
-            }
+    /* Function that checks if the user is enabled and loads home page. If the user is note enabled, calls to index aiming to load the 'notenabled' page */
+    public function home(){
+        $m = new Model();
+        $data = $m->getUser($_SESSION["user"]);
+        if($data["enabled"] == 1){
+            require __DIR__ . '/templates/home.php';
         }else{
-            $notEnabled = true;
-            require __DIR__ . '/templates/login.php';
-        }  
-        require __DIR__ . '/templates/home.php';
+            header("location:index.php?ctl=notenabled");
+        }
     }
 
     /* Function that checks if login or register were submitted and prepares the session variables. Then calls the index with "index.php?ctl='home'" */
@@ -30,41 +27,51 @@ class Controller
     {
         try{
             if(isset($_REQUEST["register-submit"])){
+                //Data from the register form
                 $data = $_POST;
 
-                $validacion = new Validacion();
+                $validation = new Validation();
 
-                $regla = array(
+                //Rules to validate each form input
+                $rules = array(
                     array('name' => 'username', 'regla' => 'noempty,user'),
                     array('name' => 'email', 'regla' => 'no-empty,email'),
                     array('name' => 'password', 'regla' => 'no-empty,password'),
                     array('name' => 'confirm-password', 'regla' => 'no-empty,password')
                 );
 
-                $validation = $validacion->rules($regla,$data);
+                $validation = $validation->rules($rules,$data);
                 
                 //Check if the form is valid
                 if($validation === true){
                     //Check if 'confirmed password' is equals to the 'password'
                     if($data["password"] == $data["confirm-password"]){
                         $m = new Model();
-                        $userData = $m->addUser($data["user"],$data["email"],$data["password"]);
-                        sessionConf($data["user"]);
-                        header("location:index.php?ctl=home");
+                        //If the user does not exists in the database, add the user, configure the session and go to home page. Else, load login page and make visible the error
+                        if(empty($m->getUser($data["username"]))){
+                            $userData = $m->addUser($data["username"],$data["email"],cryptBlowfish($data["password"]));
+                            sessionConf($data["user"]);
+                            header("location:index.php?ctl=home");
+                        }else{
+                            $userExists = true;
+                            require __DIR__ . '/templates/login.php';
+                        }
+                        
                     }else{
-                        $message = $validation->message;
                         require __DIR__ . '/templates/login.php';
                     }
                     
                 }else{
-                    
+                    $message = $validation->message;
+                    require __DIR__ . '/templates/login.php';
                 }
-
-            }else if(isset($_REQUEST["login-submit"])){
+            
+            }else if(isset($_REQUEST["login-submit"])){ /* Check if login form was submitted */
                 /* Sanitize input values and store them */
-                $user = Validacion::sanitiza("username");
-                $password = Validacion::sanitiza("password");
+                $user = Validation::sanitiza("username");
+                $password = Validation::sanitiza("password");
 
+                /* Get user data */
                 $m = new Model();
                 $userData = $m->getUser($user);
 
@@ -79,6 +86,8 @@ class Controller
                     //Configure the user session
                     sessionConf($user);
                     
+
+                    header("location:index.php?ctl=home");
                 }else{
                     $notValid = true;
                     require __DIR__ . '/templates/login.php';
@@ -90,6 +99,13 @@ class Controller
             header("location:index.php?ctl=error");
         }
             
+    }
+
+    /* Function that close the session and load the login page */
+    public function logout()
+    {
+        closeSession();
+        require __DIR__ . "/templates/login.php";
     }
 }
 

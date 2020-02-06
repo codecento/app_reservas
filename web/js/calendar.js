@@ -11,7 +11,7 @@ $(document).ready(function(){
     // Set current month as active
     $(".months-row").children().eq(date.getMonth()).addClass("active-month");
     init_calendar(date);
-    $(".table-date").on("click",date_click);
+    
 });
 
 // Initialize the calendar by appending the HTML dates
@@ -58,6 +58,8 @@ function init_calendar(date) {
     // Append the last row and set the current year
     calendar_days.append(row);
     $(".year").text(year);
+
+    $(".table-date").click({date: date}, date_click);
 }
 
 // Get the number of days in a given month/year
@@ -112,130 +114,10 @@ function show_hours() {
     var classroomName = "Classroom Example";
     hoursContainer.append($("<h4 id='classroomName' class='mt-4 text-white pb-3'>"+classroomName+"</h4>"));
     for(var i=0; i<14; i++) {
-        var range = $("<div class='range' id='"+hours[i]+"'><p class='hours-text'>"+hours[i]+"</p></div>");
+        var range = $("<div class='range' id='"+(i+1)+"'><p class='hours-text'>"+hours[i]+"</p><button class='button'>Reservar</button></div>");
         hoursContainer.append(range);
     }
-
-    
-
-    /*
-    // Clear the dates container
-    $(".events-container").empty();
-    $(".events-container").show(250);
-    console.log(event_data["events"]);
-    // If there are no events for this date, notify the user
-    if(events.length===0) {
-        var event_card = $("<div class='event-card'></div>");
-        var event_name = $("<div class='event-name'>There are no events planned for "+month+" "+day+".</div>");
-        $(event_card).append(event_name);
-        $(".events-container").append(event_card);
-    }
-    else {
-        // Go through and add each event as a card to the events container
-        for(var i=0; i<events.length; i++) {
-            var event_card = $("<div class='event-card'></div>");
-            var event_name = $("<div class='event-name'>"+events[i]["occasion"]+":</div>");
-            var event_count = $("<div class='event-count'>"+events[i]["invited_count"]+" Invited</div>");
-            if(events[i]["cancelled"]===true) {
-                $(event_card).css({
-                    "border-left": "10px solid #FF1744"
-                });
-                event_count = $("<div class='event-cancelled'>Cancelled</div>");
-            }
-            $(event_card).append(event_name).append(event_count);
-            $(".events-container").append(event_card);
-        }
-    }*/
 }
-
-// Given data for events in JSON format
-var event_data = {
-    "events": [
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2017,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2017,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-        {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2017,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2017,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2017,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2017,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2017,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2017,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2017,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2017,
-        "month": 5,
-        "day": 10
-    },
-    {
-        "occasion": " Test Event",
-        "invited_count": 120,
-        "year": 2017,
-        "month": 5,
-        "day": 11
-    }
-    ]
-};
 
 const months = [ 
     "January", 

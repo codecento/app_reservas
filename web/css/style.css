@@ -42,7 +42,12 @@
   padding: 20px;
   width: 350px;
   margin: 20px auto;
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   background: #fff;
   border-left: 10px solid #5c1e0c;
   border-radius: 3px;
