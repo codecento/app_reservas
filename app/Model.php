@@ -30,6 +30,7 @@ class Model extends PDO
         return $statement->fetchAll()[0]["password"];        
     }
 
+    /* Function that adds a user to the database */
     public function addUser($user,$email,$password){
         $admin = false;
         $enabled = false;
@@ -42,9 +43,13 @@ class Model extends PDO
         $statement->execute();
     }
 
-    public function getReservations($classroom,$date,$range)
+    /* Function that gets reservations from the database with parameters */
+    public function getDateReservations($classroom="%",$date="%")
     {
-        $statement = $this->conexion->query('SELECT * FROM reservations');
+        $statement = $this->conexion->prepare('SELECT * FROM reservations WHERE date_reservation LIKE ? && name_classroom LIKE ?');
+        $statement->bindParam(1, $date);
+        $statement->bindParam(2, $classroom);
+        $statement->execute();
         return $statement->fetchAll();
     }
     

@@ -22,7 +22,7 @@ class Validation
         //Sanitiza si es true
         if($sanitizar == true){
             foreach($data as $key => $value){
-                $data[$key] = Validacion::sanitiza($key);
+                $data[$key] = Validation::sanitiza($key);
             }
         }   
         

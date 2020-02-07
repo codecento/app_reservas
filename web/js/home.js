@@ -19,6 +19,8 @@ $(function(){
         
     $(".reserve-button").click({date: date},reserve_click);
 
+
+
 });
 
 function reserve_click()
@@ -61,11 +63,12 @@ function init_calendar(date) {
             var curr_date = $("<td class='table-date'>"+day+"</td>");
             if(today===day && $(".active-date").length===0) {
                 curr_date.addClass("active-date");
-                show_hours();
+                date.setDate(today);
+                show_hours(date);
+                
             }
 
             // Set onClick handler for clicking a date
-            curr_date.click();
             row.append(curr_date);
         }
     }
@@ -91,7 +94,7 @@ function date_click(event) {
     $(".active-date").removeClass("active-date");
     $(this).addClass("active-date");
     date.setDate(parseInt($(".active-date").html()));
-    show_hours();
+    show_hours(date);
 };
 
 // Event handler for when a month is clicked
@@ -124,18 +127,29 @@ function prev_year(event) {
 }
 
 // Display all events of the selected date in card views, checking if there is a reservation
-function show_hours() {
-    var date = 
+function show_hours(date) {
     var hoursContainer = $(".hours-container");
-    var classroomName = "Classroom Example";
+    var classroomName = "classroom1";
+    
     hoursContainer.append($("<h4 id='classroomName' class='mt-4 text-white pb-3'>"+classroomName+"</h4>"));
     for(var i=0; i<14; i++) {
-        var range = $("<div class='range' id='"+(i+1)+"'><p class='hours-text'>"+hours[i]+"</p><button class='button reserve-button'>Reserve</button><button class='button remove-button hidden'>Remove</button></div>");
+        var rangeId = i+1;
+        var range = $("<div class='range' id='"+rangeId+"'><p class='hours-text'>"+hours[i]+"</p><button class='button reserve-button'>Reserve</button><button class='button remove-button hidden'>Remove</button></div>");
         hoursContainer.append(range);
-        $.ajax({url: "index.php",type: "GET", data: {ctl: "checkReservations",}, success: function(respuesta){
-            
-        }});
     }
+
+    $.ajax({url: "index.php",type: "GET", data: {ctl: "getDateReservations",date: date.toJSON().split("T")[0],classroom: classroomName}, success: function(reservations){
+        var reservationsArray = reservations;
+        console.log(JSON.parse(reservationsArray)[0].user);
+     /*    for(var i = 0; i <= reservationsArray.length; i++){
+            $(".range").each(function(){
+                console.log(JSON.parse(reservationsArray[i]));
+                /*if($(this).attr("id") == JSON.parse(reservationsArray[i]).range_reservation){
+                    $(this).css("display","none");
+                }
+            });
+        }*/
+    }});
     
 }
 

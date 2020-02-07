@@ -111,10 +111,12 @@ class Controller
         require __DIR__ . "/templates/login.php";
     }
 
-    public function getReservations()
+    public function getDateReservations()
     {
+        $date = Validation::sanitiza("date");
+        $classroom = Validation::sanitiza("classroom");
         $m = new Model();
-        $reservations = $m->getReservations();
+        $reservations = $m->getDateReservations($classroom,$date);
         echo json_encode($reservations);
     }
 }
