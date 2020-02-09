@@ -1,6 +1,15 @@
 <?php ob_start(); ?>
-<h2 class="page-title">Reserve a classroom</h2>
-<div class="content">
+<h2 class="page-title">Reserve a classroom  </h2>
+<div id="classrooms">
+  <div class="card" style="width: 18rem;">
+    <div class="card-header bg-success text-white">
+      Classrooms
+    </div>
+    <ul id="classroom-list" class="list-group list-group-flush">
+    
+    </ul>
+  </div>
+  <div id="calendar" class="content hidden">
   <div class="calendar-container">
     <div class="calendar">
       <div class="year-header">
@@ -50,4 +59,6 @@
 <?php
 $contenido = ob_get_clean();
 include "layout.php"
-?>
+?>    
+</div>
+

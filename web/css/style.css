@@ -4,7 +4,6 @@
   padding: 0px 0;
   height: 500px;
   position: relative;
-  margin: 20px auto;
   background: #029f5b;
   background: -webkit-gradient(linear, right top, left top, from(#029f5b), color-stop(80%, #00ec86), to(#00ff91));
   background: linear-gradient(to left, #029f5b 0%, #00ec86 80%, #00ff91 100%);
@@ -148,10 +147,6 @@
   color: white;
   border: none;
   background: rgba(95, 25, 8, 0.938);
-}
-
-.hidden {
-  display: none;
 }
 
 /* Style for dates */
@@ -337,10 +332,6 @@
 
 /* Variables that set web details colors */
 /* Placeholder that defines how transitions will be in the website */
-.page-title {
-  text-align: center;
-}
-
 /* NAVBAR START */
 #navbarSupportedContent li a {
   text-decoration: none;
@@ -360,4 +351,36 @@
 }
 
 /* NAVBAR END */
+/* BODY STYLE */
+.page-title {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+#classrooms {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 4em;
+}
+
+#classrooms li:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.116);
+}
+
+/* BODY END */
+/* FOOTER STYLE */
+footer {
+  margin-top: 4em;
+}
+
+/* FOOTER END */
 /*# sourceMappingURL=style.css.map */

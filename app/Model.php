@@ -52,5 +52,13 @@ class Model extends PDO
         $statement->execute();
         return $statement->fetchAll();
     }
+
+    /* Function that get each classroom in the database with it's information*/
+    public function getClassrooms()
+    {
+        $statement = $this->conexion->prepare('SELECT * FROM classrooms');
+        $statement->execute();
+        return $statement->fetchAll();
+    }
     
 }

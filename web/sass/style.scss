@@ -3,16 +3,13 @@
 /* Variables that set web details colors */
 $color_1: #666;
 $color_2: #029f5b;
+$background_color_1: rgba(128, 128, 128, 0.116); 
 
 /* Placeholder that defines how transitions will be in the website */
 %web-transitions{
 	-webkit-transition: all 0.1s linear;
 	-moz-transition: all 0.1s linear;
 	transition: all 0.1s linear;
-}
-
-.page-title{
-    text-align: center;
 }
 
 /* NAVBAR START */
@@ -37,3 +34,33 @@ $color_2: #029f5b;
 }
 
 /* NAVBAR END */
+
+/* BODY STYLE */
+.page-title{
+    text-align: center;
+}
+
+.hidden{
+	display: none;
+}
+
+#classrooms{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 4em;
+
+    li{
+      &:hover{
+          cursor: pointer;
+          background-color: $background_color_1;
+      }  
+    }
+}
+/* BODY END */
+
+/* FOOTER STYLE */
+footer{
+    margin-top: 4em;
+}
+/* FOOTER END */

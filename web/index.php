@@ -14,7 +14,8 @@ $map = array(
     'home' => array('controller' =>'Controller', 'action' =>'home'),
     'error' => array('controller' =>'Controller', 'action' =>'error'),
     'logout' => array('controller' => 'Controller', 'action' => 'logout'),
-    'getDateReservations' => array('controller' => 'Controller', 'action' => 'getDateReservations')
+    'getDateReservations' => array('controller' => 'Controller', 'action' => 'getDateReservations'),
+    'getClassrooms' => array('controller' => 'Controller', 'action' => 'getClassrooms')
 );
 
 // parsing route

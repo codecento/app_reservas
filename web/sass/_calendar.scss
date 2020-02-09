@@ -19,7 +19,6 @@ $border_color_3: rgb(202, 97, 10);
 	padding: 0px 0;
 	height: 500px;
 	position: relative;
-	margin: 20px auto;
 	background: $color_1;
 	background: -moz-linear-gradient(right,$color_1 0%, $color_8 80%, $color_9 100%);
 	background: -webkit-linear-gradient(right, $color_1 0%, $color_8 80%, $color_9 100%);
@@ -154,10 +153,6 @@ $border_color_3: rgb(202, 97, 10);
 	color: $color_4;
 	border: none;
 	background: $color_2;
-}
-
-.hidden{
-	display: none;
 }
 
 /* Style for dates */
