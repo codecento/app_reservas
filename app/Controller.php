@@ -16,13 +16,11 @@ class Controller
 
     /* Function that checks if the user is enabled and loads home page. If the user is note enabled, calls to index aiming to load the 'notenabled' page */
     public function home(){
-        $m = new Model();
-        $data = $m->getUser($_SESSION["user"]);
-        if($data["enabled"] == 1){
-            require __DIR__ . '/templates/home.php';
-        }else{
-            header("location:index.php?ctl=notenabled");
-        }
+        require __DIR__ . '/templates/home.php';
+    }
+
+    public function classrooms(){
+        echo "hola";
     }
 
     /* Function that checks if login or register were submitted and prepares the session variables. Then calls the index with "index.php?ctl='home'" */
@@ -46,21 +44,21 @@ class Controller
                 $validation = $validation->rules($rules,$data);
                 
                 //Check if the form is valid
-                if($validation === true){
+                if(!isset($validation->message)){
                     //Check if 'confirmed password' is equals to the 'password'
                     if($data["password"] == $data["confirm-password"]){
                         $m = new Model();
                         //If the user does not exists in the database, add the user, configure the session and go to home page. Else, load login page and make visible the error
                         if(empty($m->getUser($data["username"]))){
-                            $userData = $m->addUser($data["username"],$data["email"],cryptBlowfish($data["password"]));
-                            sessionConf($data["user"]);
-                            header("location:index.php?ctl=home");
+                            $registered = $m->addUser($data["username"],$data["email"],cryptBlowfish($data["password"]));
+                            header("location:index.php?ctl=login");
                         }else{
                             $userExists = true;
                             require __DIR__ . '/templates/login.php';
                         }
                         
                     }else{
+                        $passwordMatches = false;
                         require __DIR__ . '/templates/login.php';
                     }
                     
@@ -80,17 +78,21 @@ class Controller
 
                 /* Check if the user exists on the database and, in that case, log the user */
                 if(!empty($userData)){
-                    $passwordDB = $userData["password"];
+                    $passwordDB = $userData[0]["password"];
 
-                    /* Gets the user admin and enabled states and checks if the user is enabled to use the app */
-                    $enabled = $userData["enabled"];
-                    $admin = $userData["admin"];
+                    /* Gets the user level and checks if the user is enabled to use the app */
+                    $level = $userData[0]["level"];
 
-                    //Configure the user session
-                    sessionConf($user);
+                    if($passwordDB == cryptBlowfish($password)){
+                        //Configure the user session
+                        sessionConf($user,$level);
+                        header("location:index.php?ctl=home");
+                    }else{
+                        $notValid = true;
+                        require __DIR__ . '/templates/login.php';
+                    }
+
                     
-
-                    header("location:index.php?ctl=home");
                 }else{
                     $notValid = true;
                     require __DIR__ . '/templates/login.php';
@@ -99,7 +101,9 @@ class Controller
                 require __DIR__ . '/templates/login.php';
             }
         }catch(Exception $e){
-            header("location:index.php?ctl=error");
+            echo $e->getMessage();
+        }catch(Exception $e){
+            echo $e->getMessage();
         }
             
     }
@@ -108,7 +112,7 @@ class Controller
     public function logout()
     {
         closeSession();
-        require __DIR__ . "/templates/login.php";
+        header("location:index.php?ctl=login");
     }
 
     /* Function that get reservations with certain parameters and send them to the client */

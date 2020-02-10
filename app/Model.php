@@ -19,28 +19,19 @@ class Model extends PDO
         $statement = $this->conexion->prepare('SELECT * FROM users WHERE user=?');
         $statement->bindParam(1,$user);
         $statement->execute();
-        return $statement->fetchAll()[0];
-    }
-
-    /* Function that returns the query looking for a user password */
-    public function getUserPassword($user){
-        $statement = $this->conexion->prepare('SELECT "password" FROM users WHERE user=?');
-        $statement->bindParam(1,$user);
-        $statement->execute();
-        return $statement->fetchAll()[0]["password"];        
+        return $statement->fetchAll();
     }
 
     /* Function that adds a user to the database */
-    public function addUser($user,$email,$password){
-        $admin = false;
-        $enabled = false;
-        $statement = $this->conexion->prepare('INSERT INTO users(user, email, password, admin, enabled) VALUES (?,?,?,?,?)');
+    public function addUser($user,$email,$password)
+    {
+        $level = 0;
+        $statement = $this->conexion->prepare('INSERT INTO users(user, email, password, level) VALUES (?,?,?,?)');
         $statement->bindParam(1,$user);
         $statement->bindParam(2,$email);
         $statement->bindParam(3,$password);
-        $statement->bindParam(4,$admin);
-        $statement->bindParam(5,$enabled);
-        $statement->execute();
+        $statement->bindParam(4,$level);
+        return $statement->execute();
     }
 
     /* Function that gets reservations from the database with parameters */
@@ -63,10 +54,6 @@ class Model extends PDO
 
     public function addReservation($user,$classroom,$date,$range)
     {
-        echo $user;
-        echo $classroom;
-        echo $date;
-        echo $range;
         $statement = $this->conexion->prepare('INSERT INTO reservations(user,name_classroom,date_reservation,range_reservation) VALUES (?,?,?,?)');
         $statement->bindParam(1,$user);
         $statement->bindParam(2,$classroom);

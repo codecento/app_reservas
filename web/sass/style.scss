@@ -46,7 +46,9 @@ $background_color_1: rgba(128, 128, 128, 0.116);
 
 #classrooms{
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
     flex-wrap: wrap;
     margin-top: 4em;
 
@@ -56,6 +58,10 @@ $background_color_1: rgba(128, 128, 128, 0.116);
           background-color: $background_color_1;
       }  
     }
+}
+
+.card{
+    height: fit-content;
 }
 /* BODY END */
 

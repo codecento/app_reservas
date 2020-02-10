@@ -13,6 +13,7 @@ $(function(){
     
 });
 
+/* Function that creates the calendar */
 function create_classroom_calendar(){
     $("#calendar").removeClass("hidden");
     var classroom = $(this).attr("id");
@@ -26,8 +27,6 @@ function create_classroom_calendar(){
     $(".months-row").children().eq(date.getMonth()).addClass("active-month");
     init_calendar(date,classroom);
         
-    /* Add click event handler to the reserve button */
-    $(".reserve-button").click({date: date,classroom: classroom},reserve_click);
 }
 
 /* Function that makes a reservation by the user using ajax */
@@ -170,6 +169,9 @@ function show_hours(date,classroom) {
         var range = $("<div class='range' id='"+rangeId+"'><p class='hours-text'>"+hours[i]+"</p><button class='button reserve-button'>Reserve</button><button class='button remove-button hidden'>Remove</button></div>");
         hoursContainer.append(range);
     }
+
+    /* Add click event handler to the reserve button */
+    $(".reserve-button").click({date: date,classroom: classroom},reserve_click);
 
     $.ajax({url: "index.php",type: "GET", data: {ctl: "getDateReservations",date: myDateString,classroom: classroomName}, success: function(reservations){
         var reservationsArray = reservations;

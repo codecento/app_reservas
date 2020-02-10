@@ -27,7 +27,7 @@ class Validation
         }   
         
         if (!is_array($rule)) {
-            $this->mensaje = "las reglas deben de estar en formato de arreglo";
+            $this->message = "las reglas deben de estar en formato de arreglo";
             return $this;
         }
 
@@ -159,7 +159,7 @@ function campoImagen()
         if (isset($valor) && !empty($valor)) {
             return true;
         } else {
-            $this->mensaje[$campo][] = "el campo $campo debe de estar lleno";
+            $this->message[$campo][] = "el campo $campo debe de estar lleno";
             return false;
         }
     }
@@ -174,7 +174,7 @@ function campoImagen()
         if (is_numeric($valor)) {
             return true;
         } else {
-            $this->mensaje[$campo] = "el campo $campo debe de ser numerico";
+            $this->message[$campo] = "el campo $campo debe de ser numerico";
             return false;
         }
     }
@@ -182,7 +182,7 @@ function campoImagen()
     protected function _password($campo, $valor)
     {
         if (! preg_match("/^[A-Za-z0-9]{8,}$/", $valor)){
-            $this->mensaje[$campo] = "el campo $campo debe de contener letras y numeros, y tener al menos 8 caracteres";
+            $this->mesage[$campo] = "el campo $campo debe de contener letras y numeros, y tener al menos 8 caracteres";
             return false;
         }
         else
@@ -192,7 +192,7 @@ function campoImagen()
 
     protected function _user($campo, $valor){
         if (! preg_match("/^[A-Za-z0-9]{7,15}$/", $valor)){
-            $this->mensaje[$campo] = "el campo $campo debe de contener letras y numeros, y tener entre 7 y 15 caracteres";
+            $this->message[$campo] = "el campo $campo debe de contener letras y numeros, y tener entre 7 y 15 caracteres";
             return false;
         }
         else
@@ -201,7 +201,7 @@ function campoImagen()
 
     protected function _text($campo, $valor){
         if (! preg_match("/^[A-Za-z]{7,15}$/", $valor)){
-            $this->mensaje[$campo] = "el campo $campo debe de contener letras y tener entre 7 y 15 caracteres";
+            $this->message[$campo] = "el campo $campo debe de contener letras y tener entre 7 y 15 caracteres";
             return false;
         }
         else
@@ -219,7 +219,7 @@ function campoImagen()
         if (preg_match("/^[a-z]+([\.]?[a-z0-9_-]+)*@[a-z]+([\.-]+[a-z0-9]+)*\.[a-z]{2,}$/", $valor)) {
             return true;
         } else {
-            $this->mensaje[$campo] = "El email ha de estar en el formato de email usuario@servidor.com";
+            $this->message[$campo] = "El email ha de estar en el formato de email usuario@servidor.com";
             return false;
         }
     }

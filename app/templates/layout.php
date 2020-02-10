@@ -21,18 +21,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link active" href="index.php?ctl=home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Reservations</a>
+        <a class="nav-link" href="index.php?ctl=reservations">Reservations</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Classrooms</a>
+        <a class="nav-link" href="index.php?ctl=classrooms">Classrooms</a>
       </li>
     </ul>
     
         <form class="form-inline my-2 my-lg-0" method="POST" action="index.php?ctl=logout">
-      <button class="btn btn-outline-success my-2 my-sm-0 btn-submit" type="submit">Logout</button>
+        <button class="btn btn-outline my-2 my-sm-0" type="submit">Welcome, <?php echo $_SESSION["user"]?></button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
     </form>
      
   </div>

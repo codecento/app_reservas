@@ -1,14 +1,14 @@
 
 <?php
 
-function sessionConf($user)
+function sessionConf($user,$level)
 {
     $_SESSION["user"] = $user;
+    $_SESSION["level"] = $level;
 }
 
 function initalizeSession()
 {
-
     session_start();
 }
 

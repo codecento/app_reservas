@@ -58,14 +58,22 @@
 												</div>
 												<div class="text-center">
 													<p style="color: red">
+														<?php
+															if(isset($notValid)){
+																echo "User or password incorrect.";
+															}else if(isset($userExists)){
+																echo "Register error: the user name has already been taken!";
+															}
+														?>
+														
+													</p>
 													<?php
-														if(isset($notValid)){
-															echo "User or password incorrect.";
-														}else if(isset($userExists)){
-															echo "Register error: the user name has already been taken!";
+														if(isset($message)){
+															foreach($message as $key => $value){
+																echo "<p style='color: red'>".$value."</p>";
+															}
 														}
 													?>
-													</p>
 												</div>
 											</div>
 										</div>
