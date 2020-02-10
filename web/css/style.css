@@ -22,6 +22,7 @@
 }
 
 .hours-container {
+  max-width: 100%;
   overflow-y: scroll;
   float: right;
   height: 100%;
@@ -38,6 +39,7 @@
 }
 
 .range {
+  max-width: 100%;
   padding: 20px;
   width: 350px;
   margin: 20px auto;
@@ -333,7 +335,7 @@
 /* Variables that set web details colors */
 /* Placeholder that defines how transitions will be in the website */
 /* NAVBAR START */
-#navbarSupportedContent li a {
+#navbarSupportedContent li a, #navbarSupportedContent label {
   text-decoration: none;
   color: #666;
   font-weight: bold;
@@ -376,6 +378,7 @@
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin-top: 4em;
+  margin-bottom: 4em;
 }
 
 #classrooms li:hover {
@@ -387,6 +390,11 @@
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+  margin: 0 auto;
+  margin-bottom: 4em;
+  box-shadow: 3px 8px 16px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 3px 8px 16px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -webkit-box-shadow: 3px 8px 16px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 /* BODY END */

@@ -54,7 +54,7 @@ if (method_exists($controlador['controller'],$controlador['action'])) {
 }else {
     header('Status: 404 Not Found');
     echo '<html><body><h1>Error 404: The controller <i>' .
-        $controlador['controller'] .
+        $controlador['controller'] . 
         '->' .
         $controlador['action'] .
         '</i> does not exist.</h1></body></html>';

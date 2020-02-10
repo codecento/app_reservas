@@ -96,6 +96,7 @@
 										<h4>Upload profile image</h4>
 										<input type="file" name="image" id="image" tabindex="2">
 									</div>
+									
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -103,6 +104,7 @@
 											</div>
 										</div>
 									</div>
+									<label>You won't be able to sign in until an administrator enables you.</label>
 								</form>
 							</div>
 						</div>

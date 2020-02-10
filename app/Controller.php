@@ -19,8 +19,14 @@ class Controller
         require __DIR__ . '/templates/home.php';
     }
 
-    public function classrooms(){
-        echo "hola";
+    public function classrooms()
+    {
+        require __DIR__ . '/templates/classrooms.php';  
+    }
+
+    public function reservations()
+    {
+        require __DIR__ . '/templates/reservations.php';
     }
 
     /* Function that checks if login or register were submitted and prepares the session variables. Then calls the index with "index.php?ctl='home'" */

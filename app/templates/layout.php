@@ -24,15 +24,15 @@
         <a class="nav-link active" href="index.php?ctl=home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?ctl=reservations">Reservations</a>
+        <a class="nav-link" href="index.php?ctl=reservations">My reservations</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?ctl=classrooms">Classrooms</a>
+        <a class="nav-link" href="index.php?ctl=classrooms">Administration</a>
       </li>
     </ul>
     
         <form class="form-inline my-2 my-lg-0" method="POST" action="index.php?ctl=logout">
-        <button class="btn btn-outline my-2 my-sm-0" type="submit">Welcome, <?php echo $_SESSION["user"]?></button>
+        <label class="nav-link">Welcome, <?php echo $_SESSION["user"]?></label>
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
     </form>
      
@@ -53,10 +53,10 @@
         <div class="col-4">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Privacy</a>
+                    <a class="nav-link text-success" href="#">Privacy</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Terms & Conditions</a>
+                    <a class="nav-link text-success" href="#">Terms & Conditions</a>
                 </li>
             </ul>
         </div>
