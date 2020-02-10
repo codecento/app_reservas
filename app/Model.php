@@ -60,5 +60,19 @@ class Model extends PDO
         $statement->execute();
         return $statement->fetchAll();
     }
+
+    public function addReservation($user,$classroom,$date,$range)
+    {
+        echo $user;
+        echo $classroom;
+        echo $date;
+        echo $range;
+        $statement = $this->conexion->prepare('INSERT INTO reservations(user,name_classroom,date_reservation,range_reservation) VALUES (?,?,?,?)');
+        $statement->bindParam(1,$user);
+        $statement->bindParam(2,$classroom);
+        $statement->bindParam(3,$date);
+        $statement->bindParam(4,$range);
+        return $statement->execute();
+    }
     
 }

@@ -126,6 +126,16 @@ class Controller
         $m = new Model();
         echo json_encode($m->getClassrooms());
     }
+
+    /*  */
+    public function addReservation()
+    {
+        $date = Validation::sanitiza("date");
+        $classroom = Validation::sanitiza("classroom");
+        $range = Validation::sanitiza("range");
+        $m = new Model();
+        return $m->addReservation($_SESSION["user"],$classroom,$date,$range) ? true : false;
+    }
 }
 
 ?>

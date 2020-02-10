@@ -27,15 +27,18 @@ function create_classroom_calendar(){
     init_calendar(date,classroom);
         
     /* Add click event handler to the reserve button */
-    $(".reserve-button").click({date: date},reserve_click);
+    $(".reserve-button").click({date: date,classroom: classroom},reserve_click);
 }
 
 /* Function that makes a reservation by the user using ajax */
 function reserve_click(event)
 {
     var myDateString = formatDate(event.data.date);
-    $.ajax({url: "index.php",type: "GET", data: {ctl: "getDateReservations",date: myDateString,classroom: classroomName}, success: function(reservations){
-        
+    var range = $(this).parent().attr("id");
+    $.ajax({url: "index.php",type: "GET", data: {ctl: "addReservation",date: myDateString,classroom: event.data.classroom,range: range}, success: function(added){
+        if(added){
+            $(event.target).parent().remove();
+        }
     }});
 }
 
@@ -175,7 +178,7 @@ function show_hours(date,classroom) {
             $(".range").each(function(){
                 console.log(JSON.parse(reservationsArray)[i])
                 if($(this).attr("id") == JSON.parse(reservationsArray)[i].range_reservation){
-                    $(this).css("display","none");
+                    $(this).remove();
                 }
             });
         }
