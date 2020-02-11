@@ -35,7 +35,7 @@ class Model extends PDO
     }
 
     /* Function that gets reservations from the database with parameters */
-    public function getDateReservations($classroom="%",$date="%")
+    public function getReservations($classroom="%",$date="%")
     {
         $statement = $this->conexion->prepare('SELECT * FROM reservations WHERE date_reservation LIKE ? && name_classroom LIKE ?');
         $statement->bindParam(1, $date);
@@ -52,6 +52,14 @@ class Model extends PDO
         return $statement->fetchAll();
     }
 
+    public function addClassroom($classroom_name, $description)
+    {
+        $statement = $this->conexion->prepare('INSERT INTO classrooms(classroom_name,description) VALUES (?,?)');
+        $statement->bindParam(1,$classroom_name);
+        $statement->bindParam(2,$description);
+        return $statement->execute();
+    }
+
     public function addReservation($user,$classroom,$date,$range)
     {
         $statement = $this->conexion->prepare('INSERT INTO reservations(user,name_classroom,date_reservation,range_reservation) VALUES (?,?,?,?)');
@@ -60,6 +68,11 @@ class Model extends PDO
         $statement->bindParam(3,$date);
         $statement->bindParam(4,$range);
         return $statement->execute();
+    }
+
+    public function changeUserLevel($user,$level)
+    {
+        $statement = $this->conexion->prepare();
     }
     
 }

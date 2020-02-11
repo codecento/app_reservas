@@ -127,7 +127,13 @@ class Controller
         $date = Validation::sanitiza("date");
         $classroom = Validation::sanitiza("classroom");
         $m = new Model();
-        echo json_encode($m->getDateReservations($classroom,$date));
+        echo json_encode($m->getReservations($classroom,$date));
+    }
+
+    public function getReservations()
+    {
+        $m = new Model();
+        echo json_encode($m->getReservations());
     }
 
     /* Function that get classrooms and send them to the client */

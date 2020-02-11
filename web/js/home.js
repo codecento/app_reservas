@@ -1,16 +1,8 @@
 var hours = ["7:55 - 8:50","8:50 - 9:45","9:45 - 10:40","11:00 - 11:55", "11:55 - 12:50", "12:50 - 13:45", "14:05 - 15:00", "15:00 - 15:55", "15:55 - 16:50", "16:50 - 17:45","18:05 - 19:00", "19:00 - 19:55", "19:55 - 20:50","21:10 - 22:05"];
 
 $(function(){
-    //Navbar behavior
-    $("#navbarSupportedContent li a").on("click",function(){
-        $("#navbarSupportedContent li a").removeClass("active");
-        $(this).addClass("active");
-    });
-
     /* Call to 'create_classrooms' method */
     create_classrooms();
-
-    
 });
 
 /* Function that creates the calendar */

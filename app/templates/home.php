@@ -1,4 +1,5 @@
 <?php ob_start(); ?>
+<script src="js/home.js"></script>
 <h2 class="page-title">Reserve a classroom  </h2>
 <div id="classrooms">
   <div class="card" style="width: 18rem;">
