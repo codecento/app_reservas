@@ -44,6 +44,14 @@ class Model extends PDO
         return $statement->fetchAll();
     }
 
+    public function getUserReservations($user)
+    {
+        $statement = $this->conexion->prepare('SELECT * FROM reservations WHERE user LIKE ?');
+        $statement->bindParam(1, $user);
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+
     /* Function that get each classroom in the database with it's information*/
     public function getClassrooms()
     {
@@ -72,7 +80,17 @@ class Model extends PDO
 
     public function changeUserLevel($user,$level)
     {
-        $statement = $this->conexion->prepare();
+        $statement = $this->conexion->prepare("");
+    }
+
+    public function deleteReservation($user,$classroom,$date,$range)
+    {
+        $statement = $this->conexion->prepare('DELETE FROM reservations WHERE user LIKE ? && name_classroom LIKE ? && date_reservation LIKE ? && range_reservation LIKE ?');
+        $statement->bindParam(1,$user);
+        $statement->bindParam(2,$classroom);
+        $statement->bindParam(3,$date);
+        $statement->bindParam(4,$range);
+        return $statement->execute();
     }
     
 }

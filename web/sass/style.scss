@@ -69,6 +69,20 @@ $background_color_1: rgba(128, 128, 128, 0.116);
 	-moz-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	-webkit-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
+
+#reservations{
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.reservation{
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	-moz-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	-webkit-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
 /* BODY END */
 
 /* FOOTER STYLE */

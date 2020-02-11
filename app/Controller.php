@@ -136,6 +136,13 @@ class Controller
         echo json_encode($m->getReservations());
     }
 
+    /* I prefer to use a new function only for specific user resverations */
+    public function getUserReservations()
+    {
+        $m = new Model();
+        echo json_encode($m->getUserReservations($_SESSION["user"]));
+    }
+
     /* Function that get classrooms and send them to the client */
     public function getClassrooms()
     {
@@ -150,7 +157,17 @@ class Controller
         $classroom = Validation::sanitiza("classroom");
         $range = Validation::sanitiza("range");
         $m = new Model();
-        return $m->addReservation($_SESSION["user"],$classroom,$date,$range) ? true : false;
+        echo $m->addReservation($_SESSION["user"],$classroom,$date,$range) ? true : false;
+    }
+
+    public function deleteReservation()
+    {
+        $date = Validation::sanitiza("date");
+        $classroom = Validation::sanitiza("classroom");
+        $range = Validation::sanitiza("range");
+        $m = new Model();
+        echo $m->deleteReservation($_SESSION["user"],$classroom,$date,$range);
+
     }
 }
 

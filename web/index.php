@@ -22,7 +22,9 @@ $map = array(
     'getDateReservations' => array('controller' => 'Controller', 'action' => 'getDateReservations', "level" => 1),
     'getClassrooms' => array('controller' => 'Controller', 'action' => 'getClassrooms', "level" => 1),
     'addReservation' => array('controller' => 'Controller', 'action' => 'addReservation', "level" => 1),
-    'getReservations' => array('controller' => 'Controller', 'action' => 'getReservations', "level" => 1)3
+    'getReservations' => array('controller' => 'Controller', 'action' => 'getReservations', "level" => 1),
+    'getUserReservations' => array('controller' => 'Controller', 'action' => 'getUserReservations', "level" => 1),
+    'deleteReservation' => array('controller' => 'Controller', 'action' => 'deleteReservation', "level" => 1)
 );
 
 // parsing route
