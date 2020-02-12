@@ -6,7 +6,10 @@ require_once __DIR__ . '/../app/Model.php';
 require_once __DIR__ . '/../app/Controller.php';
 require_once __DIR__ . '/../app/Session.php';
 
+checkSessionTime();
+
 session_start();
+
 if(!isset($_SESSION["level"])){
     $_SESSION["level"] = 0;
 }
@@ -53,7 +56,6 @@ if (method_exists($controlador['controller'],$controlador['action'])) {
         else 
             header("location:index.php?ctl=home");
     }
-
     call_user_func(array(new $controlador['controller'],$controlador['action']));
 }else {
     header('Status: 404 Not Found');

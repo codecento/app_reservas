@@ -37,6 +37,9 @@ class Controller
                 //Data from the register form
                 $data = $_POST;
 
+                $userImages = "user_images/";
+                $extenions = ["image/jpeg", "image/png"];
+
                 $validation = new Validation();
 
                 //Rules to validate each form input
@@ -54,25 +57,69 @@ class Controller
                     //Check if 'confirmed password' is equals to the 'password'
                     if($data["password"] == $data["confirm-password"]){
                         $m = new Model();
-                        //If the user does not exists in the database, add the user, configure the session and go to home page. Else, load login page and make visible the error
-                        if(empty($m->getUser($data["username"]))){
-                            $registered = $m->addUser($data["username"],$data["email"],cryptBlowfish($data["password"]));
-                            header("location:index.php?ctl=login");
-                        }else{
-                            $userExists = true;
-                            require __DIR__ . '/templates/login.php';
+
+                        /* Check uploaded image */
+                        if ($_FILES["image"]['error'] != 0) {
+                            switch ($_FILES["image"]['error']) {
+                                case 1:
+                                    $image = "Fichero demasiado grande";
+                                    break;
+                                case 2:
+                                    $image = 'El fichero es demasiado grande';
+                                    break;
+                                case 3:
+                                    $image = 'El fichero no se ha podido subir entero';
+                                    break;
+                                case 4:
+                                    $image = 'No se ha podido subir el fichero';
+                                    break;
+                                case 6:
+                                    $image = "Falta carpeta temporal";
+                                    break;
+                                case 7:
+                                    $image = "No se ha podido escribir en el disco";
+                                    break;
+                                default:
+                                    $image = 'Error indeterminado.';
+                            }
+                        } else {
+                            $nombreArchivo = $_FILES["image"]['name'];
+                            $directorioTemp = $_FILES["image"]['tmp_name'];
+                            $extension = $_FILES['imagen']['type'];
+                            if (! in_array($extension, $extensions)) {
+                                $image = "Image extension is not valid";
+                            }else{
+                                $nombreArchivo = $userImages . $data["username"];
+                    
+                                if (is_dir($userImages))
+                                    if (!move_uploaded_file($directorioTemp, $nombreArchivo)) {
+                                        $image = "Image can not be uploaded. Try to sign up again.";
+                                    }
+                                else
+                                    $image = "Image can not be uploaded. Try to sign up again.";
+                            }
                         }
-                        
+
+                        /* If there isn't any error with the image, check if the user can be saved on database */
+                        if(!isset($image)){
+                            //If the user does not exists in the database, add the user, configure the session and go to home page. Else, load login page and make visible the error
+                            if(empty($m->getUser($data["username"]))){
+                                $registered = $m->addUser($data["username"],$data["email"],cryptBlowfish($data["password"]));
+                            }else{
+                                $userExists = true;
+                            }
+                        }
+
                     }else{
                         $passwordMatches = false;
-                        require __DIR__ . '/templates/login.php';
                     }
                     
                 }else{
                     $message = $validation->message;
-                    require __DIR__ . '/templates/login.php';
                 }
-            
+
+                require __DIR__ ."templates/login.php";
+
             }else if(isset($_REQUEST["login-submit"])){ /* Check if login form was submitted */
                 /* Sanitize input values and store them */
                 $user = Validation::sanitiza("username");
@@ -90,8 +137,11 @@ class Controller
                     $level = $userData[0]["level"];
 
                     if($passwordDB == cryptBlowfish($password)){
+                        sessionCookieConf();
+
                         //Configure the user session
                         sessionConf($user,$level);
+
                         header("location:index.php?ctl=home");
                     }else{
                         $notValid = true;
@@ -173,8 +223,9 @@ class Controller
     /* Get the users to send them to client */
     public function getUsers()
     {
+        $level = 2;
         $m = new Model();
-        echo json_encode($m->getUser());
+        echo json_encode($m->getUsers($level));
     }
 
     public function deleteClassroom()

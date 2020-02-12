@@ -15,7 +15,7 @@ class Model extends PDO
     }
 
     /* Function that returns the query looking for a user */
-    public function getUser($user="%"){
+    public function getUser($user){
         $statement = $this->conexion->prepare('SELECT * FROM users WHERE user=?');
         $statement->bindParam(1,$user);
         $statement->execute();
@@ -102,5 +102,13 @@ class Model extends PDO
         $statement = $this->conexion->prepare('DELETE FROM classrooms WHERE classroom_name LIKE $classroom');
         $statement->bindParam(1,$classroom);
         return $statement->execute();
+    }
+
+    public function getUsers($level)
+    {
+        $statement = $this->conexion->prepare('SELECT * FROM users WHERE level != ?');
+        $statement->bindParam(1, $level);
+        $statement->execute();
+        return $statement->fetchAll();
     }
 }

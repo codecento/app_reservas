@@ -63,6 +63,8 @@
 																echo "User or password incorrect.";
 															}else if(isset($userExists)){
 																echo "Register error: the user name has already been taken!";
+															}else if(isset($_GET["timeout"])){
+																echo "Your session was closed due to a long time of inactivity";
 															}
 														?>
 														
@@ -79,7 +81,7 @@
 										</div>
 									</div>
 								</form>
-								<form id="register-form" action="index.php?ctl=login" method="post" role="form" style="display: none;">
+								<form id="register-form" action="index.php?ctl=login" method="post" role="form" style="display: none;" enctype='multipart/form-data'>
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 									</div>
