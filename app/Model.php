@@ -60,6 +60,7 @@ class Model extends PDO
         return $statement->fetchAll();
     }
 
+    /* Function that adds classroom with all the required parameters */
     public function addClassroom($classroom_name, $description)
     {
         $statement = $this->conexion->prepare('INSERT INTO classrooms(classroom_name,description) VALUES (?,?)');
@@ -78,11 +79,13 @@ class Model extends PDO
         return $statement->execute();
     }
 
+    /* Function that changes user level from the administrator page */
     public function changeUserLevel($user,$level)
     {
         $statement = $this->conexion->prepare("");
     }
 
+    /* Function that deletes a reservation */
     public function deleteReservation($user,$classroom,$date,$range)
     {
         $statement = $this->conexion->prepare('DELETE FROM reservations WHERE user LIKE ? && name_classroom LIKE ? && date_reservation LIKE ? && range_reservation LIKE ?');
@@ -93,4 +96,11 @@ class Model extends PDO
         return $statement->execute();
     }
     
+    /* Deletes an specific classroom */
+    public function deleteClassroom($classroom)
+    {
+        $statement = $this->conexion->prepare('DELETE FROM classrooms WHERE classroom_name LIKE $classroom');
+        $statement->bindParam(1,$classroom);
+        return $statement->execute();
+    }
 }

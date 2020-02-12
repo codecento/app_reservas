@@ -5,7 +5,7 @@ $(function(){
     /* Get user reservations with Ajax */
     $.ajax({url: "index.php",type: "GET", data: {ctl: "getUserReservations"}, success: function(reservations){
         var reservationsArray = JSON.parse(reservations);
-        console.log(reservationsArray);
+
         if(reservationsArray.length>0){
             for(var i = 0; i < reservationsArray.length; i++){
                 var fecha = reservationsArray[i].date_reservation;
@@ -20,9 +20,6 @@ $(function(){
         }
         
     }});
-
-    /* Add click event to delete reserve buttons */
-
 });
 
 /* Function that deletes a reserve from the database using Ajax */
@@ -33,6 +30,7 @@ function deleteReserve(event)
     var date = reverseDate($(event.target).parent().parent().find(".reserve-date").text());
     var hour = hours.indexOf($(event.target).parent().parent().find(".reserve-hour").text())+1;
 
+    /* Use ajax to delete reservations from database and, if done, remove the html element */
     $.ajax({url: "index.php",type: "GET", data: {ctl: "deleteReservation", classroom: classroom, date: date, range: hour}, success: function(deleted){
         if(deleted == true){
             $(event.target).parent().parent().parent().remove();

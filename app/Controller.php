@@ -150,7 +150,7 @@ class Controller
         echo json_encode($m->getClassrooms());
     }
 
-    /*  */
+    /* Add a reservation from client calendar */
     public function addReservation()
     {
         $date = Validation::sanitiza("date");
@@ -160,6 +160,7 @@ class Controller
         echo $m->addReservation($_SESSION["user"],$classroom,$date,$range) ? true : false;
     }
 
+    /* Deletes a reservation */
     public function deleteReservation()
     {
         $date = Validation::sanitiza("date");
@@ -167,7 +168,20 @@ class Controller
         $range = Validation::sanitiza("range");
         $m = new Model();
         echo $m->deleteReservation($_SESSION["user"],$classroom,$date,$range);
+    }
 
+    /* Get the users to send them to client */
+    public function getUsers()
+    {
+        $m = new Model();
+        echo json_encode($m->getUser());
+    }
+
+    public function deleteClassroom()
+    {
+        $classroom = Validation::sanitiza("classroom");
+        $m = new Model();
+        echo $m->deleteClassroom($classroom);
     }
 }
 
