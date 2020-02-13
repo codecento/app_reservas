@@ -40,8 +40,10 @@ function getClassrooms(){
                 $("#admin-content").append(classroomCard);
             }
         }else{
-            $("#admin-content").html("<p>You don't have any reservations!</p>");
+            $("#admin-content").html("<p>There aren't classrooms on the database.</p>");
         }
+
+        $("#admin-content").prepend("<div class='rounded' id='new-classroom'><h4>Add a new classroom</h4><input class='form-control' id='classroom-name' type='text' name='classroom-name' placeholder='Classroom'><br><input class='form-control' type='text' id='description' name='description' placeholder='Add a description'><br><div id='classroom-buttom-div'><button class='btn btn-dark' id='new-classroom-button'>Add classroom</button></div></div>");
         
     }});
 }

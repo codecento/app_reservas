@@ -237,6 +237,15 @@ class Controller
         $m = new Model();
         echo $m->deleteClassroom($classroom);
     }
+
+    public function addClassroom()
+    {
+        $classroom = Validation::sanitiza("classroom");
+        $description = Validation::sanitiza("description");
+        $m = new Model();
+        echo $m->addClassroom();
+    }
+    
 }
 
 ?>

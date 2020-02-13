@@ -440,6 +440,23 @@ main {
   -webkit-box-shadow: 3px 8px 16px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
+#admin-content{
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#new-classroom{
+  padding: 5%;
+  text-align: left;
+  box-shadow: 3px 8px 16px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 3px 8px 16px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -webkit-box-shadow: 3px 8px 16px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+#classroom-buttom-div{
+  text-align: right;
+}
+
 /* MAIN END */
 /* FOOTER STYLE */
 footer {
