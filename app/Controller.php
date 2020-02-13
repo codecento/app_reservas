@@ -19,9 +19,9 @@ class Controller
         require __DIR__ . '/templates/home.php';
     }
 
-    public function classrooms()
+    public function administration()
     {
-        require __DIR__ . '/templates/classrooms.php';  
+        require __DIR__ . '/templates/administration.php';  
     }
 
     public function reservations()

@@ -30,7 +30,7 @@
         <a class="nav-link" href="index.php?ctl=reservations">My reservations</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?ctl=classrooms">Administration</a>
+        <a class="nav-link" href="index.php?ctl=administration">Administration</a>
       </li>
     </ul>
     

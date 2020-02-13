@@ -19,7 +19,7 @@ $map = array(
     'login' => array('controller' => 'Controller', 'action'=>'login',"level" => 0),
     'home' => array('controller' =>'Controller', 'action' =>'home', "level" => 1),
     'reservations' => array('controller' =>'Controller', 'action' =>'reservations', "level" => 1),
-    'classrooms' => array('controller' =>'Controller', 'action' =>'classrooms', "level" => 2),
+    'administration' => array('controller' =>'Controller', 'action' =>'administration', "level" => 2),
     'error' => array('controller' =>'Controller', 'action' =>'error', "level" => 0),
     'logout' => array('controller' => 'Controller', 'action' => 'logout', "level" => 1),
     'getDateReservations' => array('controller' => 'Controller', 'action' => 'getDateReservations', "level" => 1),
