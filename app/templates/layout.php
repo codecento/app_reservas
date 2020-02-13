@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-white">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-success">
   <a class="navbar-brand" href="#"><img src="img/logo.png" id="logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -24,19 +24,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="index.php?ctl=home">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link text-light" href="index.php?ctl=home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?ctl=reservations">My reservations</a>
+        <a class="nav-link text-light" href="index.php?ctl=reservations">My reservations</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?ctl=administration">Administration</a>
+        <a class="nav-link text-light" href="index.php?ctl=administration">Administration</a>
       </li>
     </ul>
     
         <form class="form-inline my-2 my-lg-0" method="POST" action="index.php?ctl=logout">
-        <label class="nav-link">Welcome, <?php echo $_SESSION["user"]?></label>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+        <label class="nav-link text-white">Welcome, <?php echo $_SESSION["user"]?></label>
+        <button class="btn btn-dark my-2 my-sm-0" type="submit">Logout</button>
     </form>
      
   </div>
@@ -48,18 +48,18 @@
 
 
 
-<footer class="container-fluid">
+<footer class="fixed-bottom bg-success container-fluid">
     <div class="row">
         <div class="col-4">
-            
+          <a class="nav-link text-white" href="#">&copy; Copyright - Vicente Palacios Barrera</a>
         </div>
         <div class="col-4">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link text-success" href="#">Privacy</a>
+                    <a class="nav-link text-white" href="#">Privacy</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-success" href="#">Terms & Conditions</a>
+                    <a class="nav-link text-white" href="#">Terms & Conditions</a>
                 </li>
             </ul>
         </div>

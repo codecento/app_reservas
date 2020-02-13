@@ -1,6 +1,6 @@
 $(function() {
-	document.getElementById("username").value = localStorage.username;
-	document.getElementById("password").value = localStorage.password;
+	document.getElementById("username").value = localStorage.username || "";
+	document.getElementById("password").value = localStorage.password || "";
 
 
     $('#login-form-link').click(function(e) {

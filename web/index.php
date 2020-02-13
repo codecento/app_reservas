@@ -54,7 +54,7 @@ if (method_exists($controlador['controller'],$controlador['action'])) {
         if($_SESSION["level"] == 0)
             header("location:index.php?ctl=login");
         else 
-            header("location:index.php?ctl=home");
+            header("location:index.php?ctl=home&admin=false");
     }
     call_user_func(array(new $controlador['controller'],$controlador['action']));
 }else {

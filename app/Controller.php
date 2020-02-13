@@ -16,12 +16,15 @@ class Controller
 
     /* Function that checks if the user is enabled and loads home page. If the user is note enabled, calls to index aiming to load the 'notenabled' page */
     public function home(){
+        if(isset($_GET["admin"])){
+            $notAdmin = true;
+        }
         require __DIR__ . '/templates/home.php';
     }
 
     public function administration()
     {
-        require __DIR__ . '/templates/administration.php';  
+        require __DIR__ . '/templates/administration.php';
     }
 
     public function reservations()
@@ -58,7 +61,7 @@ class Controller
                     if($data["password"] == $data["confirm-password"]){
                         $m = new Model();
 
-                        /* Check uploaded image */
+                        /* Check uploaded image 
                         if ($_FILES["image"]['error'] != 0) {
                             switch ($_FILES["image"]['error']) {
                                 case 1:
@@ -98,17 +101,17 @@ class Controller
                                 else
                                     $image = "Image can not be uploaded. Try to sign up again.";
                             }
-                        }
+                        }*/
 
                         /* If there isn't any error with the image, check if the user can be saved on database */
-                        if(!isset($image)){
+                        //if(!isset($image)){
                             //If the user does not exists in the database, add the user, configure the session and go to home page. Else, load login page and make visible the error
                             if(empty($m->getUser($data["username"]))){
                                 $registered = $m->addUser($data["username"],$data["email"],cryptBlowfish($data["password"]));
                             }else{
                                 $userExists = true;
                             }
-                        }
+                        //}
 
                     }else{
                         $passwordMatches = false;
@@ -118,7 +121,7 @@ class Controller
                     $message = $validation->message;
                 }
 
-                require __DIR__ ."templates/login.php";
+                require __DIR__ ."/templates/login.php";
 
             }else if(isset($_REQUEST["login-submit"])){ /* Check if login form was submitted */
                 /* Sanitize input values and store them */

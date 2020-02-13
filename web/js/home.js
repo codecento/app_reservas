@@ -3,6 +3,10 @@ var hours = ["7:55 - 8:50","8:50 - 9:45","9:45 - 10:40","11:00 - 11:55", "11:55 
 $(function(){
     /* Call to 'create_classrooms' method */
     create_classrooms();
+
+    $("#delete-modal").on("click",function(){
+        $(this).parentsUntil("main").remove();
+    });
 });
 
 /* Function that creates the calendar */
@@ -158,7 +162,7 @@ function show_hours(date,classroom) {
     hoursContainer.append($("<h4 id='classroomName' class='mt-4 text-white pb-3'>"+classroomName+"</h4>"));
     for(var i=0; i<14; i++) {
         var rangeId = i+1;
-        var range = $("<div class='range' id='"+rangeId+"'><p class='hours-text'>"+hours[i]+"</p><button class='button reserve-button'>Reserve</button><button class='button remove-button hidden'>Remove</button></div>");
+        var range = $("<div class='range text-dark' id='"+rangeId+"'><p class='hours-text'>"+hours[i]+"</p><button class='button reserve-button'>Reserve</button><button class='button remove-button hidden'>Remove</button></div>");
         hoursContainer.append(range);
     }
 

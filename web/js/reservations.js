@@ -33,7 +33,7 @@ function deleteReserve(event)
     /* Use ajax to delete reservations from database and, if done, remove the html element */
     $.ajax({url: "index.php",type: "GET", data: {ctl: "deleteReservation", classroom: classroom, date: date, range: hour}, success: function(deleted){
         if(deleted == true){
-            $(event.target).parent().parent().parent().remove();
+            $(event.target).parentsUntil("#reservations").remove();
         }
     }});
 }

@@ -1,16 +1,16 @@
 <?php ob_start(); ?>
 <script src="js/administration.js"></script>
-<h2 class="page-title">Administration hub</h2>
+<h2 class="page-title mb-5">Administration hub</h2>
 <div id="sections" class="container">
     <div class="row">
-        <div id="usersAdmin" class="section col-sm-4">
-            <h3>Users</h3>
+        <div id="usersAdmin" class="rounded btn section col-sm-4 text-center bg-dark text-light" style="height: 100px">
+            <h3 class="mt-3">Users</h3>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" style="height: 50px">
 
         </div>
-        <div id="classroomsAdmin" class="section col-sm-4">
-            <h3>Classrooms</h3>
+        <div id="classroomsAdmin" class="rounded section btn col-sm-4 text-center bg-dark text-light" style="height: 100px">
+            <h3 class="mt-3">Classrooms</h3>
         </div>
     </div>
 </div>

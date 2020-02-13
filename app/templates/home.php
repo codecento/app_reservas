@@ -1,9 +1,30 @@
 <?php ob_start(); ?>
 <script src="js/home.js"></script>
+<?php 
+  if(isset($notAdmin)){
+    ?>
+    <div class="modal d-block" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title text-white">Warning</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" id="delete-modal">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>You have to be an administrator to get into the Administration page.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
+  }
+?>
 <h2 class="page-title">Reserve a classroom  </h2>
 <div id="classrooms">
   <div class="card" style="width: 18rem;">
-    <div class="card-header bg-success text-white">
+    <div class="card-header bg-dark text-light text-white">
       Classrooms
     </div>
     <ul id="classroom-list" class="list-group list-group-flush">
@@ -13,7 +34,7 @@
   <div id="calendar" class="content hidden">
   <div class="calendar-container">
     <div class="calendar">
-      <div class="year-header">
+      <div class="year-header bg-dark text-light">
         <span class="left-button" id="prev"> &lang; </span>
         <span class="year" id="label"></span>
         <span class="right-button" id="next"> &rang; </span>
@@ -54,7 +75,7 @@
       </div>
     </div>
   </div>
-  <div class="hours-container">
+  <div class="hours-container bg-dark text-light">
   </div>
 </div>
 <?php

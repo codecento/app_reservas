@@ -20,10 +20,6 @@ $border_color_3: rgb(202, 97, 10);
 	padding: 0px 0;
 	height: 500px;
 	position: relative;
-	background: $color_1;
-	background: -moz-linear-gradient(right,$color_1 0%, $color_8 80%, $color_9 100%);
-	background: -webkit-linear-gradient(right, $color_1 0%, $color_8 80%, $color_9 100%);
-	background: linear-gradient(to left, $color_1 0%, $color_8 80%, $color_9 100%);
 	border-radius: 3px;
 	box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	-moz-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -95,10 +91,6 @@ $border_color_3: rgb(202, 97, 10);
 	display: table;
 }
 .year-header {
-	background: $color_1;
-	background: -moz-linear-gradient(left, $color_1 0%, $color_8 80%, $color_9 100%);
-	background: -webkit-linear-gradient(left, $color_1 0%, $color_8 80%, $color_9 100%);
-	background: linear-gradient(to right, $color_1 0%, $color_8 80%, $color_9 100%);
 	font-family: $font_family_1;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 	-moz-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -200,7 +192,7 @@ $border_color_3: rgb(202, 97, 10);
 .active-month {
 	font-weight: bold;
 	font-size: 14px;
-	color: $color_1;
+	color: $color_7;
 	text-shadow: 0 1px 4px lightcyan;
 }
 .table-date {
@@ -241,10 +233,6 @@ $border_color_3: rgb(202, 97, 10);
 		max-width: 100%;
 		width: 370px;
 		height: 100%;
-		background: $color_1;
-		background: -moz-linear-gradient(left, $color_1 0%, $color_8 80%, $color_9 100%);
-		background: -webkit-linear-gradient(left, $color_1 0%, $color_8 80%, $color_9 100%);
-		background: linear-gradient(to right, $color_1 0%, $color_8 80%, $color_9 100%);
 	}
 	.dialog {
 		width: 370px;
