@@ -52,11 +52,11 @@
 
 
 <footer class="bg-success container-fluid">
-    <div class="row">
-        <div class="col-4">
+    <div class="row" id="footer">
+        <div class="col-sm-4">
           <a class="nav-link text-white" href="#">&copy; Copyright - Vicente Palacios Barrera</a>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Privacy</a>
@@ -66,7 +66,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
 
         </div>
     </div>

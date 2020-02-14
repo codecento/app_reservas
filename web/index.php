@@ -29,6 +29,8 @@ $map = array(
     'getUserReservations' => array('controller' => 'Controller', 'action' => 'getUserReservations', "level" => 1),
     'deleteReservation' => array('controller' => 'Controller', 'action' => 'deleteReservation', "level" => 1),
     'getUsers' => array('controller' => 'Controller', 'action' => 'getUsers', "level" => 2),
+    'deleteUser' => array('controller' => 'Controller', 'action' => 'deleteUser', "level" => 2),
+    'changeUserLevel' => array('controller' => 'Controller', 'action' => 'changeUserLevel', "level" => 2)
 );
 
 // parsing route

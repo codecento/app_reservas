@@ -79,11 +79,7 @@ class Model extends PDO
         return $statement->execute();
     }
 
-    /* Function that changes user level from the administrator page */
-    public function changeUserLevel($user,$level)
-    {
-        $statement = $this->conexion->prepare("");
-    }
+    
 
     /* Function that deletes a reservation */
     public function deleteReservation($user,$classroom,$date,$range)
@@ -99,7 +95,7 @@ class Model extends PDO
     /* Deletes an specific classroom */
     public function deleteClassroom($classroom)
     {
-        $statement = $this->conexion->prepare('DELETE FROM classrooms WHERE classroom_name LIKE $classroom');
+        $statement = $this->conexion->prepare('DELETE FROM classrooms WHERE classroom_name LIKE ?');
         $statement->bindParam(1,$classroom);
         return $statement->execute();
     }
@@ -110,5 +106,21 @@ class Model extends PDO
         $statement->bindParam(1, $level);
         $statement->execute();
         return $statement->fetchAll();
+    }
+
+    /* Function that deletes a user */
+    public function deleteUser($user)
+    {
+        $statement = $this->conexion->prepare('DELETE FROM users WHERE user LIKE ?');
+        $statement->bindParam(1,$user);
+        return $statement->execute();
+    }
+
+    /* Function that changes user level from the administrator page */
+    public function changeUserLevel($user,$level){
+        $statement = $this->conexion->prepare('UPDATE users SET level = ? WHERE user LIKE ?');
+        $statement->bindParam(1,$level);
+        $statement->bindParam(2, $user);
+        return $statement->execute();
     }
 }

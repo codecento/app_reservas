@@ -59,6 +59,7 @@
 												<div class="text-center">
 													<p style="color: red">
 														<?php
+														//Checking register form errors to print them on screen, with a proper error message
 															if(isset($notValid)){
 																echo "User or password incorrect.";
 															}else if(isset($userExists)){
@@ -70,6 +71,7 @@
 														
 													</p>
 													<?php
+													//Checking messages from Validation class
 														if(isset($message)){
 															foreach($message as $key => $value){
 																echo "<p style='color: red'>".$value."</p>";
@@ -83,16 +85,16 @@
 								</form>
 								<form id="register-form" action="index.php?ctl=login" method="post" role="form" style="display: none;" enctype='multipart/form-data'>
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" pattern="^[A-Za-z0-9]{7,15}$">
 									</div>
 									<div class="form-group">
-										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" pattern="^[^0-9][_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" pattern="^[A-Za-z0-9]{8,*}$">
 									</div>
 									<div class="form-group">
-										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" pattern="^[A-Za-z0-9]{8,*}$">
 									</div>
 									<div class="form-group">
 										<h4>Upload profile image</h4>

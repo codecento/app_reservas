@@ -94,8 +94,7 @@ class Controller
                             }else{
                                 $nombreArchivo = $userImages . $data["username"];
                     
-                                if (is_dir($userImages)){
-
+                                if (is_dir($userImages)){//If user images directory exists, move the image
                                     if (!move_uploaded_file($directorioTemp, $nombreArchivo)) {
                                         $image = "Image can not be uploaded. Try to sign up again.";
                                     }
@@ -246,6 +245,21 @@ class Controller
         $description = Validation::sanitiza("description");
         $m = new Model();
         echo $m->addClassroom($classroom,$description);
+    }
+
+    public function deleteUser()
+    {
+        $user = Validation::sanitiza("user");
+        $m = new Model();
+        echo $m->deleteUser($user);
+    }
+
+    public function changeUserLevel()
+    {
+        $level = 1;
+        $user = Validation::sanitiza("user");
+        $m = new Model();
+        echo $m->changeUserLevel($user,$level);
     }
     
 }

@@ -43,6 +43,7 @@ nav{
 #user-image{
     max-width: 75px;
     max-height: 75px;
+    border-radius: 5em;
 }
 
 /* NAVBAR END */
@@ -164,6 +165,18 @@ footer{
     @media (min-width: 768px) {
         position: fixed;
         bottom: 0;
+    }
+
+    
+    
+}
+
+#footer{
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-content: center;
     }
     
 }

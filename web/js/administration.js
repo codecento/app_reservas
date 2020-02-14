@@ -31,7 +31,7 @@ function getUsers(){
                 }
                 $("#admin-content").append(user);
                 user.find(".delete-user").on("click",deleteUser);
-                
+                user.find(".change-level").on("click",changeUserLevel);
             }
         }else{
             $("#admin-content").html("<p>There is not any normal user on the database!</p>");
@@ -72,17 +72,17 @@ function deleteClassroom(event)
     }});
 }
 
-function deleteUser()
+function deleteUser(event)
 {
-    var user = $(event.target).parent().find(".card-header").html();
-    $.ajax({url: "index.php",type: "GET", data: {ctl: "deleteUser",classroom: classroom}, success: function(deleted){
-        if(deleted == true){
-            $(event.target).parent().parent().parent().remove();
-        }
+    $.ajax({url: "index.php",type: "GET", data: {ctl: "deleteUser",user: user}, success: function(deleted){
+            $(event.target).parentsUntil("#admin-content").remove();
     }});
 }
 
 function changeUserLevel(event)
 {
-    
+    var user = $(event.target).parentsUntil(".user").find(".user-name").html();
+    $.ajax({url: "index.php",type: "GET", data: {ctl: "changeUserLevel",user: user}, success: function(changed){
+        $(event.target).remove();
+    }});
 }
