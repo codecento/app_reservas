@@ -7,12 +7,21 @@ $(function(){
     $("#delete-modal").on("click",function(){
         $(this).parentsUntil("main").remove();
     });
+
+    //Function that closes calendar when none option is choosed
+    $("#none-option").on("click",function(){
+        $("#calendar").css("display","none");
+        $("footer").css("position","fixed");
+    })
 });
 
 /* Function that creates the calendar */
 function create_classroom_calendar(){
+    $("#calendar").css("display","block");
+    $("footer").css("position","relative");
     $("#calendar").removeClass("hidden");
-    var classroom = $(this).attr("id");
+    $("#calendar").css("margin","0px auto");
+    var classroom = $(this).text();
     var date = new Date();
     var today = date.getDate();
     // Set click handlers for DOM elements
@@ -22,7 +31,6 @@ function create_classroom_calendar(){
     // Set current month as active
     $(".months-row").children().eq(date.getMonth()).addClass("active-month");
     init_calendar(date,classroom);
-        
 }
 
 /* Function that makes a reservation by the user using ajax */
@@ -42,9 +50,11 @@ function create_classrooms(){
     $.ajax({url: "index.php",type: "GET", data: {ctl: "getClassrooms"}, success: function(classroomsAjax){
         var classrooms = JSON.parse(classroomsAjax);
         for (let index = 0; index < classrooms.length; index++) {
-            var listItem = $("<li class='list-group-item' id='"+classrooms[index][0]+"'><p>"+classrooms[index][0]+"</p><p class='hidden'>"+classrooms[index][1]+"</li>");
-            listItem.click(create_classroom_calendar);
-            $("#classrooms ul").append(listItem); 
+            /*var listItem = $("<li class='list-group-item' id='"+classrooms[index][0]+"'><p>"+classrooms[index][0]+"</p><p class='hidden'>"+classrooms[index][1]+"</li>");
+            listItem.click(create_classroom_calendar);*/
+            var option = $("<option value='" + classrooms[index][0] + "'>"+classrooms[index][0]+"</option>");
+            $("#classrooms-list").append(option); 
+            option.on("click",create_classroom_calendar);
         }
     }});
 }

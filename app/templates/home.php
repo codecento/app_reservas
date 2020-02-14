@@ -22,14 +22,17 @@
   }
 ?>
 <h2 class="page-title">Reserve a classroom  </h2>
+<div class="back-button-container">
+<button class="btn-dark rounded back-button hidden" id="administration-back">Go back</button>
+</div>
 <div id="classrooms">
   <div class="card" style="width: 18rem;">
     <div class="card-header bg-dark text-light text-white">
-      Classrooms
+      Choose a classroom
     </div>
-    <ul id="classroom-list" class="list-group list-group-flush">
-    
-    </ul>
+    <select class="form-control" id="classrooms-list">
+      <option id="none-option">None</option>
+    </select>
   </div>
   <div id="calendar" class="content hidden">
   <div class="calendar-container">

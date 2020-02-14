@@ -1,6 +1,5 @@
 $(function() {
 	document.getElementById("username").value = localStorage.username || "";
-	document.getElementById("password").value = localStorage.password || "";
 
 
     $('#login-form-link').click(function(e) {
@@ -22,7 +21,6 @@ $(function() {
 	$("#remember").click(function(event) {
 		if(document.getElementById("remember").checked == true){
 			localStorage.setItem("username",document.getElementById("username").value);
-			localStorage.setItem("password",document.getElementById("password").value);
 		}
 	});
 

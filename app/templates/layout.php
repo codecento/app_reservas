@@ -35,6 +35,9 @@
     </ul>
     
         <form class="form-inline my-2 my-lg-0" method="POST" action="index.php?ctl=logout">
+          <?php 
+          echo "<img id='user-image' src='user_images/".$_SESSION["user"]."'>";
+           ?>
         <label class="nav-link text-white">Welcome, <?php echo $_SESSION["user"]?></label>
         <button class="btn btn-dark my-2 my-sm-0" type="submit">Logout</button>
     </form>
@@ -48,7 +51,7 @@
 
 
 
-<footer class="fixed-bottom bg-success container-fluid">
+<footer class="bg-success container-fluid">
     <div class="row">
         <div class="col-4">
           <a class="nav-link text-white" href="#">&copy; Copyright - Vicente Palacios Barrera</a>

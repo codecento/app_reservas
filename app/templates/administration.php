@@ -1,6 +1,9 @@
 <?php ob_start(); ?>
 <script src="js/administration.js"></script>
 <h2 class="page-title mb-5">Administration hub</h2>
+<div class="back-button-container">
+<button class="btn-dark rounded back-button hidden" id="administration-back">Go back</button>
+</div>
 <div id="sections" class="container">
     <div class="row">
         <div id="usersAdmin" class="rounded btn section col-sm-4 text-center bg-dark text-light" style="height: 100px">
@@ -14,6 +17,7 @@
         </div>
     </div>
 </div>
+
 <div id="admin-content">
 
 </div>

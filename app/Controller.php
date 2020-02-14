@@ -41,7 +41,7 @@ class Controller
                 $data = $_POST;
 
                 $userImages = "user_images/";
-                $extenions = ["image/jpeg", "image/png"];
+                $extensions = ["image/jpeg", "image/png"];
 
                 $validation = new Validation();
 
@@ -61,7 +61,7 @@ class Controller
                     if($data["password"] == $data["confirm-password"]){
                         $m = new Model();
 
-                        /* Check uploaded image 
+                        /* Check uploaded image */
                         if ($_FILES["image"]['error'] != 0) {
                             switch ($_FILES["image"]['error']) {
                                 case 1:
@@ -88,30 +88,32 @@ class Controller
                         } else {
                             $nombreArchivo = $_FILES["image"]['name'];
                             $directorioTemp = $_FILES["image"]['tmp_name'];
-                            $extension = $_FILES['imagen']['type'];
+                            $extension = $_FILES["image"]['type'];
                             if (! in_array($extension, $extensions)) {
                                 $image = "Image extension is not valid";
                             }else{
                                 $nombreArchivo = $userImages . $data["username"];
                     
-                                if (is_dir($userImages))
+                                if (is_dir($userImages)){
+
                                     if (!move_uploaded_file($directorioTemp, $nombreArchivo)) {
                                         $image = "Image can not be uploaded. Try to sign up again.";
                                     }
+                                }
                                 else
-                                    $image = "Image can not be uploaded. Try to sign up again.";
+                                    $image = "Image can not be uploaded. Contact with the administrator.";
                             }
-                        }*/
+                        }
 
                         /* If there isn't any error with the image, check if the user can be saved on database */
-                        //if(!isset($image)){
+                        if(!isset($image)){
                             //If the user does not exists in the database, add the user, configure the session and go to home page. Else, load login page and make visible the error
                             if(empty($m->getUser($data["username"]))){
                                 $registered = $m->addUser($data["username"],$data["email"],cryptBlowfish($data["password"]));
                             }else{
                                 $userExists = true;
                             }
-                        //}
+                        }
 
                     }else{
                         $passwordMatches = false;
@@ -243,7 +245,7 @@ class Controller
         $classroom = Validation::sanitiza("classroom");
         $description = Validation::sanitiza("description");
         $m = new Model();
-        echo $m->addClassroom();
+        echo $m->addClassroom($classroom,$description);
     }
     
 }

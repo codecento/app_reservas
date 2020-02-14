@@ -2,12 +2,24 @@ $(function(){
     $("#usersAdmin").on("click",getUsers);
     $("#classroomsAdmin").on("click",getClassrooms);
     $("body").on("click",".delete-classroom-card",deleteClassroom);
+    $(".back-button").on("click",backButtonAction);
 });
+
+function backButtonAction()
+{
+    $("footer").css("position","fixed");
+    $("#sections").css("display","block");
+    $("#admin-content").css("display","none");
+    $("#admin-content").html("");
+    $(this).css("display","none");
+}
 
 /* Function that get normal users from database and show them on the users administration section */
 function getUsers(){
+    $("footer").css("position","relative");
     $("#sections").css("display","none");
     $("#admin-content").css("display","block");
+    $("#administration-back").css("display","block");
     $.ajax({url: "index.php",type: "GET", data: {ctl: "getUsers"}, success: function(users){
         var usersArray = JSON.parse(users);
         if(usersArray.length>0){
@@ -30,8 +42,10 @@ function getUsers(){
 
 /* Function that get every classroom in the database and show them on the classroom adminsitration section */
 function getClassrooms(){
+    $("footer").css("position","relative");
     $("#sections").css("display","none");
     $("#admin-content").css("display","block");
+    $("#administration-back").css("display","block");
     $.ajax({url: "index.php",type: "GET", data: {ctl: "getClassrooms"}, success: function(classrooms){
         var classroomsArray = JSON.parse(classrooms);
         if(classroomsArray.length>0){
@@ -60,7 +74,12 @@ function deleteClassroom(event)
 
 function deleteUser()
 {
-
+    var user = $(event.target).parent().find(".card-header").html();
+    $.ajax({url: "index.php",type: "GET", data: {ctl: "deleteUser",classroom: classroom}, success: function(deleted){
+        if(deleted == true){
+            $(event.target).parent().parent().parent().remove();
+        }
+    }});
 }
 
 function changeUserLevel(event)

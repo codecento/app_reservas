@@ -40,6 +40,11 @@ nav{
     mix-blend-mode: multiply;
 }
 
+#user-image{
+    max-width: 75px;
+    max-height: 75px;
+}
+
 /* NAVBAR END */
 
 /* MAIN STYLE */
@@ -55,7 +60,7 @@ main{
 	display: none;
 }
 
-#classrooms{
+/*#classrooms{
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -71,12 +76,13 @@ main{
           background-color: $background_color_1;
       }  
     }
-}
+}*/
 
 .card{
     height: fit-content;
     margin: 0 auto;
     margin-bottom: 4em;
+    margin-top: 1em;
     box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	-moz-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	-webkit-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -123,6 +129,27 @@ main{
         -webkit-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     }
 }
+
+#admin-content{
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  #new-classroom{
+    padding: 5%;
+    text-align: left;
+    box-shadow: 3px 8px 16px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 3px 8px 16px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    -webkit-box-shadow: 3px 8px 16px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+  
+  #classroom-buttom-div{
+    text-align: right;
+  }
+
+  .back-button{
+      margin: 0px auto;
+  }
 /* MAIN END */
 
 /* FOOTER STYLE */
@@ -130,6 +157,14 @@ footer{
     margin-top: 4em;
     box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	-moz-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-	-webkit-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    -webkit-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    @media (min-width: 768px) {
+        position: fixed;
+        bottom: 0;
+    }
+    
 }
 /* FOOTER END */
