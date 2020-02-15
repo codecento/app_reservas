@@ -50,12 +50,16 @@ body {
 	padding-top: 90px;
 }
 
+h1{
+    text-shadow: 2px 2px grey;
+}
+
 /* Login panel style */
 .panel-login {
 	border-color: $border_color_1;
-	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	-moz-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	-webkit-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	>.panel-heading {
 		color: $color_1;
 		background-color: $background_color_1;

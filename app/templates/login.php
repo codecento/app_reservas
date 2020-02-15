@@ -13,7 +13,7 @@
 	<script src="js/login.js"></script>
 </head>
 <body>
-<img src="img/abastos01.jpg">
+<h1 class='text-center'>I.E.S. Abastos Classroom Reservation Aplication</h1>
 <div class="container" id="#mainForm">
         <div class="row">
 			<div class="col-md-6 col-md-offset-3">

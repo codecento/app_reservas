@@ -1,8 +1,8 @@
 $(function(){
     $("#usersAdmin").on("click",getUsers);
     $("#classroomsAdmin").on("click",getClassrooms);
-    $("body").on("click",".delete-classroom-card",deleteClassroom);
     $(".back-button").on("click",backButtonAction);
+    
 });
 
 function backButtonAction()
@@ -50,23 +50,37 @@ function getClassrooms(){
         var classroomsArray = JSON.parse(classrooms);
         if(classroomsArray.length>0){
             for(var i = 0; i < classroomsArray.length; i++){
-                var classroomCard = $("<div class='classroom-card mt-4 mb-4'><div class='card'><div class='card-header bg-success text-white'>"+classroomsArray[i][0]+"</div><div class='card-body'><p class='card-text'>"+classroomsArray[i][1]+"</p><a href='#' class='delete-classrom-card btn btn-danger'>Delete</a></div></div></div>");
+                var classroomCard = $("<div class='classroom-card mt-4 mb-4'><div class='card'><div class='card-header bg-success text-white'>"+classroomsArray[i][0]+"</div><div class='card-body'><p class='card-text'>"+classroomsArray[i][1]+"</p><a href='#' class='delete-classroom-card btn btn-danger'>Delete</a></div></div></div>");
                 $("#admin-content").append(classroomCard);
             }
-        }else{
-            $("#admin-content").html("<p>There aren't classrooms on the database.</p>");
         }
 
-        $("#admin-content").prepend("<div class='rounded' id='new-classroom'><h4>Add a new classroom</h4><input class='form-control' id='classroom-name' type='text' name='classroom-name' placeholder='Classroom'><br><input class='form-control' type='text' id='description' name='description' placeholder='Add a description'><br><div id='classroom-buttom-div'><button class='btn btn-dark' id='new-classroom-button'>Add classroom</button></div></div>");
-        
+        $("#admin-content").prepend("<div class='rounded mt-3' id='new-classroom'><h4>Add a new classroom</h4><input class='form-control' id='classroom-name' type='text' name='classroom-name' placeholder='Classroom'><br><input class='form-control' type='text' id='description' name='description' placeholder='Add a description'><br><div id='classroom-buttom-div'><button class='btn btn-dark' id='new-classroom-button'>Add classroom</button></div></div>");
+        $(".delete-classroom-card").on("click",deleteClassroom);
+        $("#new-classroom-button").on("click",addClassroom);
+    }});
+}
+
+function addClassroom(event)
+{
+    var classroomName = $(event.target).parentsUntil("#admin-content").find("#classroom-name").val();
+    var classroomDescription = $(event.target).parentsUntil("#admin-content").find("#description").val();
+    $.ajax({url: "index.php",type: "GET", data: {ctl: "addClassroom",classroomName: classroomName,classroomDescription: classroomDescription}, success: function(added){
+        if(added == 1){
+            $("#admin-content").append($("<div class='classroom-card mt-4 mb-4'><div class='card'><div class='card-header bg-success text-white'>"+classroomName+"</div><div class='card-body'><p class='card-text'>"+classroomDescription+"</p><a href='#' class='delete-classroom-card btn btn-danger'>Delete</a></div></div></div>"));
+            $(event.target).parentsUntil("#admin-content").find("#classroom-name").val('');
+            $(event.target).parentsUntil("#admin-content").find("#description").val('');
+        }
     }});
 }
 
 function deleteClassroom(event)
 {   
-    var classroom = $(event.target).parent().find(".card-header").html();
+    event.preventDefault();
+    var classroom = $(event.target).parentsUntil(".classroom-card").find(".card-header").html();
+    console.log(classroom);
     $.ajax({url: "index.php",type: "GET", data: {ctl: "deleteClassroom",classroom: classroom}, success: function(deleted){
-        if(deleted == true){
+        if(deleted == 1){
             $(event.target).parent().parent().parent().remove();
         }
     }});
@@ -75,7 +89,9 @@ function deleteClassroom(event)
 function deleteUser(event)
 {
     $.ajax({url: "index.php",type: "GET", data: {ctl: "deleteUser",user: user}, success: function(deleted){
+        if(deleted == 1){ 
             $(event.target).parentsUntil("#admin-content").remove();
+        }
     }});
 }
 
@@ -83,6 +99,8 @@ function changeUserLevel(event)
 {
     var user = $(event.target).parentsUntil(".user").find(".user-name").html();
     $.ajax({url: "index.php",type: "GET", data: {ctl: "changeUserLevel",user: user}, success: function(changed){
-        $(event.target).remove();
+        if(changed == 1){
+            $(event.target).remove();
+        }
     }});
 }

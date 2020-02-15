@@ -241,8 +241,8 @@ class Controller
 
     public function addClassroom()
     {
-        $classroom = Validation::sanitiza("classroom");
-        $description = Validation::sanitiza("description");
+        $classroom = Validation::sanitiza("classroomName");
+        $description = Validation::sanitiza("classroomDescription");
         $m = new Model();
         echo $m->addClassroom($classroom,$description);
     }
