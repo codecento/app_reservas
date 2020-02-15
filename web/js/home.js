@@ -17,10 +17,13 @@ $(function(){
 
 /* Function that creates the calendar */
 function create_classroom_calendar(){
+    //Behaviour to make the content show nice, without the footer overlaping
     $("#calendar").css("display","block");
     $("footer").css("position","relative");
     $("#calendar").removeClass("hidden");
     $("#calendar").css("margin","0px auto");
+
+
     var classroom = $(this).text();
     var date = new Date();
     var today = date.getDate();
@@ -169,7 +172,9 @@ function show_hours(date,classroom) {
 
     console.log(myDateString);
 
+    //Adds the classroom name to the calendar
     hoursContainer.append($("<h4 id='classroomName' class='mt-4 text-white pb-3'>"+classroomName+"</h4>"));
+    //Loop that creates div for every hour range
     for(var i=0; i<14; i++) {
         var rangeId = i+1;
         var range = $("<div class='range text-dark' id='"+rangeId+"'><p class='hours-text'>"+hours[i]+"</p><button class='button reserve-button'>Reserve</button><button class='button remove-button hidden'>Remove</button></div>");
@@ -179,6 +184,7 @@ function show_hours(date,classroom) {
     /* Add click event handler to the reserve button */
     $(".reserve-button").click({date: date,classroom: classroom},reserve_click);
 
+    //Ajax request to the server to find reservations and remove the proper hour range from the calendar
     $.ajax({url: "index.php",type: "GET", data: {ctl: "getDateReservations",date: myDateString,classroom: classroomName}, success: function(reservations){
         var reservationsArray = reservations;
         console.log(reservationsArray);
@@ -194,6 +200,7 @@ function show_hours(date,classroom) {
     
 }
 
+//Function that formats the date properly to send it to the server
 function formatDate(date)
 {
     date = date.toJSON().split("T")[0];
